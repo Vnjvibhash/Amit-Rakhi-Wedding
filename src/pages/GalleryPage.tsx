@@ -148,7 +148,9 @@ export const GalleryPage: React.FC = () => {
             <div>
               <h2 className="font-serif text-3xl font-bold text-maroon-900">Ceremony Albums</h2>
               <p className="text-xs text-maroon-700/80 mt-0.5">
-                {filteredPhotos.length} photograph{filteredPhotos.length === 1 ? '' : 's'} shown
+                {photos.length === 0
+                  ? 'Official wedding photo albums — Yet to be updated'
+                  : `${filteredPhotos.length} photograph${filteredPhotos.length === 1 ? '' : 's'} shown`}
               </p>
             </div>
             {(isAdmin || settings.allowGuestPhotoUpload) && (
@@ -158,47 +160,101 @@ export const GalleryPage: React.FC = () => {
             )}
           </div>
 
-          {/* Category Filter Pills */}
-          <div className="flex flex-wrap gap-2 mb-8">
-            <button
-              onClick={() => {
-                setActiveCategory('All');
-                setActiveAlbumId('all');
-              }}
-              className={`px-4 py-2 rounded-full text-xs font-semibold transition ${
-                activeCategory === 'All'
-                  ? 'bg-maroon-800 text-gold-200 border border-gold-400 shadow-sm'
-                  : 'bg-ivory-pure text-maroon-800 border border-gold-400/40 hover:bg-gold-50'
-              }`}
-            >
-              All Memories ({photos.length})
-            </button>
-            {ALBUM_CATEGORIES.map((cat) => {
-              const count = photos.filter((p) => p.category === cat).length;
-              return (
-                <button
-                  key={cat}
-                  onClick={() => {
-                    setActiveCategory(cat);
-                    setActiveAlbumId('all');
-                  }}
-                  className={`px-3.5 py-2 rounded-full text-xs font-medium transition ${
-                    activeCategory === cat
-                      ? 'bg-maroon-800 text-gold-200 border border-gold-400 shadow-sm'
-                      : 'bg-ivory-pure text-maroon-800 border border-gold-400/40 hover:bg-gold-50'
-                  }`}
-                >
-                  {cat} ({count})
-                </button>
-              );
-            })}
-          </div>
+          {/* Category Filter Pills (shown when photos exist) */}
+          {photos.length > 0 && (
+            <div className="flex flex-wrap gap-2 mb-8">
+              <button
+                onClick={() => {
+                  setActiveCategory('All');
+                  setActiveAlbumId('all');
+                }}
+                className={`px-4 py-2 rounded-full text-xs font-semibold transition ${
+                  activeCategory === 'All'
+                    ? 'bg-maroon-800 text-gold-200 border border-gold-400 shadow-sm'
+                    : 'bg-ivory-pure text-maroon-800 border border-gold-400/40 hover:bg-gold-50'
+                }`}
+              >
+                All Memories ({photos.length})
+              </button>
+              {ALBUM_CATEGORIES.map((cat) => {
+                const count = photos.filter((p) => p.category === cat).length;
+                return (
+                  <button
+                    key={cat}
+                    onClick={() => {
+                      setActiveCategory(cat);
+                      setActiveAlbumId('all');
+                    }}
+                    className={`px-3.5 py-2 rounded-full text-xs font-medium transition ${
+                      activeCategory === cat
+                        ? 'bg-maroon-800 text-gold-200 border border-gold-400 shadow-sm'
+                        : 'bg-ivory-pure text-maroon-800 border border-gold-400/40 hover:bg-gold-50'
+                    }`}
+                  >
+                    {cat} ({count})
+                  </button>
+                );
+              })}
+            </div>
+          )}
 
-          {/* Responsive Masonry Grid */}
-          {filteredPhotos.length === 0 ? (
+          {/* Responsive Masonry Grid or Yet To Be Updated State */}
+          {photos.length === 0 ? (
+            <div className="space-y-8">
+              <div className="royal-card p-10 sm:p-14 text-center max-w-3xl mx-auto">
+                <div className="w-16 h-16 rounded-full bg-gold-100 border border-gold-400/60 flex items-center justify-center mx-auto mb-4">
+                  <Camera className="w-8 h-8 text-maroon-800" />
+                </div>
+                <span className="inline-block text-[11px] uppercase tracking-[0.25em] font-semibold px-3.5 py-1 rounded-full bg-maroon-800 text-gold-200 border border-gold-400/50 mb-3">
+                  Yet To Be Updated
+                </span>
+                <h3 className="font-serif text-3xl sm:text-4xl font-bold text-maroon-900">
+                  Wedding Photo Gallery — Yet To Be Updated
+                </h3>
+                <p className="text-sm sm:text-base text-maroon-800/80 mt-3 leading-relaxed">
+                  The auspicious celebrations of {settings.coupleDisplayName} are scheduled for{' '}
+                  <strong>23rd – 26th November 2026</strong>. Official photographs from Priti Bhoj,
+                  Haldi, Mehendi, Matkor, Baraat, Shubh Vivah, and Shubh Mundan will be updated here
+                  soon!
+                </p>
+                {(isAdmin || settings.allowGuestPhotoUpload) && (
+                  <button
+                    onClick={() => setUploadOpen(true)}
+                    className="btn-gold !py-2.5 !px-6 !text-xs mt-6"
+                  >
+                    <ImagePlus className="w-4 h-4" /> Be the First to Upload a Memory
+                  </button>
+                )}
+              </div>
+
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                {albums.map((alb) => (
+                  <div
+                    key={alb.id}
+                    className="royal-card p-5 flex items-center justify-between gap-4 opacity-90"
+                  >
+                    <div>
+                      <span className="text-[10px] uppercase tracking-wider font-semibold text-gold-700">
+                        {alb.category}
+                      </span>
+                      <h4 className="font-serif text-xl font-bold text-maroon-900 mt-0.5">
+                        {alb.title}
+                      </h4>
+                      <p className="text-xs text-maroon-800/75 mt-1">{alb.description}</p>
+                    </div>
+                    <span className="shrink-0 text-[10px] uppercase tracking-wider font-semibold px-2.5 py-1 rounded-full bg-gold-100 text-maroon-900 border border-gold-400/50">
+                      Yet To Be Updated
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : filteredPhotos.length === 0 ? (
             <div className="royal-card p-12 text-center">
               <Camera className="w-10 h-10 text-gold-600 mx-auto mb-3" />
-              <p className="font-serif text-2xl text-maroon-900">No photographs in this album yet.</p>
+              <p className="font-serif text-2xl text-maroon-900">
+                Yet To Be Updated — No photographs in this album yet.
+              </p>
               <p className="text-sm text-maroon-800/75 mt-1">
                 Upload new ceremony photographs or switch to another album category.
               </p>

@@ -119,6 +119,13 @@ export function downloadWeddingSchedulePDF(
   let y = 49;
   const sorted = [...events].sort((a, b) => a.order - b.order);
 
+  const pdfSafe = (text: string) =>
+    text
+      .replace(/\s*\([^)]*[^\x00-\x7F]+[^)]*\)/g, '')
+      .replace(/[^\x20-\x7E\u2013\u2014\u2022]/g, '')
+      .replace(/\s{2,}/g, ' ')
+      .trim();
+
   sorted.forEach((evt, idx) => {
     if (y > pageHeight - 34) {
       doc.addPage();
@@ -137,26 +144,28 @@ export function downloadWeddingSchedulePDF(
     doc.setTextColor(107, 15, 26);
     doc.setFont('times', 'bold');
     doc.setFontSize(13);
-    doc.text(evt.title, 27, y);
+    doc.text(pdfSafe(evt.title), 27, y);
 
     doc.setFont('helvetica', 'bold');
     doc.setFontSize(8.5);
     doc.setTextColor(143, 101, 8);
     const dateTimeLabel = `${formatDateLong(evt.date)} | ${formatTimeDisplay(
       evt.startTime
-    )} – ${formatTimeDisplay(evt.endTime)}`;
+    )} - ${formatTimeDisplay(evt.endTime)}`;
     doc.text(dateTimeLabel, 27, y + 5);
 
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(8.5);
     doc.setTextColor(60, 30, 30);
-    doc.text(`Venue: ${evt.venueName}, ${evt.fullAddress}`, 27, y + 9.5, {
+    doc.text(pdfSafe(`Venue: ${evt.venueName}, ${evt.fullAddress}`), 27, y + 9.5, {
       maxWidth: pageWidth - 45
     });
 
     if (evt.dressCode) {
       doc.setTextColor(107, 15, 26);
-      doc.text(`Dress Code: ${evt.dressCode}`, 27, y + 14.5, { maxWidth: pageWidth - 45 });
+      doc.text(pdfSafe(`Dress Code: ${evt.dressCode}`), 27, y + 14.5, {
+        maxWidth: pageWidth - 45
+      });
       y += 22;
     } else {
       y += 17;

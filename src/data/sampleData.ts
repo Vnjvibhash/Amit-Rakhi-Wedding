@@ -29,7 +29,7 @@ export const DEFAULT_SETTINGS: WeddingSettings = {
   coupleDisplayName: 'Amit & Rakhi',
   groomFirstName: 'Amit',
   brideFirstName: 'Rakhi',
-  weddingHeadline: 'Bani Thi Sita Ram Ke Liye, Swayamwar To Ek Bahana Tha, Amit Ki Zindagi Mein Rakhi Ko Hi Aana Tha',
+  weddingHeadline: 'Bani Thi Sita Ram Ke Liye, Swayamwar To Ek Bahana Tha, Amit Ki Zindagi Mein To Rakhi Ko Hi Aana Tha',
   subHeadline: 'Shubh Panigrahan Sanskar • Vivah Invitation',
   welcomeMessage:
     'Humare utsuk nayan aapke swagat hetu pratiksharat rahenge — Your presence and warm blessings are our greatest treasure.',
@@ -114,7 +114,7 @@ export const DEFAULT_COUPLE: CoupleDetails = {
     hometown: 'Gram Chhadapatti, Post Bathnaha, Madhubani, Bihar'
   },
   storySummary:
-    '“बनी थी सीता राम के लिए, स्वयंवर तो एक बहाना था। अमित की जिंदगी में राखी को ही आना था।” — Two hearts and two respected families of Mithila united by destiny, devotion, and timeless blessings.',
+    '“बनी थी सीता राम के लिए, स्वयंवर तो एक बहाना था, अमित की जिंदगी में तो राखी को ही आना था।” — Two hearts and two respected families of Mithila united by destiny, devotion, and timeless blessings.',
   milestones: [
     {
       id: 'm1',
@@ -477,178 +477,8 @@ export const DEFAULT_ALBUMS: WeddingAlbum[] = [
   }
 ];
 
-export const DEFAULT_PHOTOS: WeddingPhoto[] = [
-  {
-    id: 'ph-1',
-    albumId: 'alb-prewedding',
-    category: 'Pre-Wedding Photoshoot',
-    imageUrl: '/images/gallery/prewedding-1.jpg',
-    caption: 'Traditional heritage artistry celebrating Indian weddings.',
-    uploadedBy: 'Singh Family Studio',
-    allowDownload: true,
-    createdAt: '2026-11-01T12:00:00Z'
-  },
-  {
-    id: 'ph-2',
-    albumId: 'alb-prewedding',
-    category: 'Pre-Wedding Photoshoot',
-    imageUrl: '/images/gallery/prewedding-2.jpg',
-    caption: 'Golden sunset silhouette ahead of the wedding celebrations.',
-    uploadedBy: 'Singh Family Studio',
-    allowDownload: true,
-    createdAt: '2026-11-01T12:15:00Z'
-  },
-  {
-    id: 'ph-3',
-    albumId: 'alb-couple',
-    category: 'Bride & Groom',
-    imageUrl: '/images/couple/couple-hero.jpg',
-    caption: 'Amit & Rakhi in traditional ceremonial attire.',
-    uploadedBy: 'Singh Family Studio',
-    allowDownload: true,
-    createdAt: '2026-11-02T14:00:00Z'
-  },
-  {
-    id: 'ph-4',
-    albumId: 'alb-couple',
-    category: 'Bride & Groom',
-    imageUrl: '/images/couple/bride.jpg',
-    caption: 'Rakhi Kumari in traditional crimson & gold bridal wear.',
-    uploadedBy: 'Singh Family Studio',
-    allowDownload: true,
-    createdAt: '2026-11-02T14:30:00Z'
-  },
-  {
-    id: 'ph-5',
-    albumId: 'alb-couple',
-    category: 'Bride & Groom',
-    imageUrl: '/images/couple/groom.jpg',
-    caption: 'Amit Kumar in royal wedding sherwani and traditional safa.',
-    uploadedBy: 'Singh Family Studio',
-    allowDownload: true,
-    createdAt: '2026-11-02T14:45:00Z'
-  },
-  {
-    id: 'ph-6',
-    albumId: 'alb-engagement',
-    category: 'Engagement Photos',
-    imageUrl: '/images/events/tilak.jpg',
-    caption: 'Tilak ceremony welcoming relatives and elders with warmth.',
-    uploadedBy: 'Singh Family Studio',
-    allowDownload: true,
-    createdAt: '2026-11-03T11:00:00Z'
-  },
-  {
-    id: 'ph-7',
-    albumId: 'alb-haldi',
-    category: 'Haldi Ceremony',
-    imageUrl: '/images/events/haldi.jpg',
-    caption: 'Auspicious Haldi ritual amidst marigold blooms.',
-    uploadedBy: 'Singh Family Studio',
-    allowDownload: true,
-    createdAt: '2026-11-04T10:30:00Z'
-  },
-  {
-    id: 'ph-8',
-    albumId: 'alb-mehendi',
-    category: 'Mehendi Ceremony',
-    imageUrl: '/images/events/mehendi.jpg',
-    caption: 'Intricate bridal henna stories and peacock motifs.',
-    uploadedBy: 'Singh Family Studio',
-    allowDownload: true,
-    createdAt: '2026-11-05T15:00:00Z'
-  },
-  {
-    id: 'ph-9',
-    albumId: 'alb-sangeet',
-    category: 'Sangeet Night',
-    imageUrl: '/images/events/sangeet.jpg',
-    caption: 'Traditional dholak and folk music celebrating the wedding week.',
-    uploadedBy: 'Singh Family Studio',
-    allowDownload: true,
-    createdAt: '2026-11-06T20:00:00Z'
-  },
-  {
-    id: 'ph-10',
-    albumId: 'alb-wedding',
-    category: 'Wedding Day',
-    imageUrl: '/images/events/mandap.jpg',
-    caption: 'Sacred mandap adorned with marigold garlands.',
-    uploadedBy: 'Singh Family Studio',
-    allowDownload: true,
-    createdAt: '2026-11-07T09:00:00Z'
-  },
-  {
-    id: 'ph-11',
-    albumId: 'alb-wedding',
-    category: 'Wedding Day',
-    imageUrl: '/images/events/vivah.jpg',
-    caption: 'Sacred Panigrahan Sanskar and Agni pheras.',
-    uploadedBy: 'Singh Family Studio',
-    allowDownload: true,
-    createdAt: '2026-11-07T19:45:00Z'
-  },
-  {
-    id: 'ph-12',
-    albumId: 'alb-wedding',
-    category: 'Wedding Day',
-    imageUrl: '/images/events/kanyadaan.jpg',
-    caption: 'Sacred Kanyadaan and Hasta Milap ceremony.',
-    uploadedBy: 'Singh Family Studio',
-    allowDownload: true,
-    createdAt: '2026-11-07T21:15:00Z'
-  },
-  {
-    id: 'ph-13',
-    albumId: 'alb-family',
-    category: 'Family Moments',
-    imageUrl: '/images/gallery/family-1.jpg',
-    caption: 'Singh family pooja and blessings together.',
-    uploadedBy: 'Singh Family',
-    allowDownload: true,
-    createdAt: '2026-11-08T11:20:00Z'
-  },
-  {
-    id: 'ph-14',
-    albumId: 'alb-friends',
-    category: 'Friends & Guests',
-    imageUrl: '/images/gallery/friends-1.jpg',
-    caption: 'Joyous folk dance and celebration with cousins and friends.',
-    uploadedBy: 'Raja Singh',
-    allowDownload: true,
-    createdAt: '2026-11-09T18:00:00Z'
-  },
-  {
-    id: 'ph-15',
-    albumId: 'alb-reception',
-    category: 'Reception',
-    imageUrl: '/images/events/reception.jpg',
-    caption: 'Illuminated courtyard welcoming guests for Priti Bhoj.',
-    uploadedBy: 'Singh Family Studio',
-    allowDownload: true,
-    createdAt: '2026-11-10T20:00:00Z'
-  },
-  {
-    id: 'ph-16',
-    albumId: 'alb-other',
-    category: 'Other Memories',
-    imageUrl: '/images/gallery/decor-1.jpg',
-    caption: 'Festive diyas and floral decor.',
-    uploadedBy: 'Decor Team',
-    allowDownload: true,
-    createdAt: '2026-11-11T09:00:00Z'
-  },
-  {
-    id: 'ph-17',
-    albumId: 'alb-other',
-    category: 'Other Memories',
-    imageUrl: '/images/gallery/decor-2.jpg',
-    caption: 'Traditional lamp lighting ahead of Matkor & Vivah.',
-    uploadedBy: 'Decor Team',
-    allowDownload: true,
-    createdAt: '2026-11-11T19:00:00Z'
-  }
-];
+// Gallery photographs will be uploaded during and after the wedding ceremonies (23–26 Nov 2026)
+export const DEFAULT_PHOTOS: WeddingPhoto[] = [];
 
 export const DEFAULT_VIDEOS: WeddingVideo[] = [
   {

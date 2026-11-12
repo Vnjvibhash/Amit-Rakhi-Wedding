@@ -44,14 +44,14 @@ import {
 } from '../utils/imageOptimizer';
 
 const STORAGE_KEYS = {
-  settings: 'wedding_portal_settings_v4',
-  couple: 'wedding_portal_couple_v4',
-  family: 'wedding_portal_family_v4',
-  events: 'wedding_portal_events_v4',
-  albums: 'wedding_portal_albums_v4',
-  photos: 'wedding_portal_photos_v4',
-  videos: 'wedding_portal_videos_v4',
-  rsvps: 'wedding_portal_rsvps_v4'
+  settings: 'wedding_portal_settings_v5',
+  couple: 'wedding_portal_couple_v5',
+  family: 'wedding_portal_family_v5',
+  events: 'wedding_portal_events_v5',
+  albums: 'wedding_portal_albums_v5',
+  photos: 'wedding_portal_photos_v5',
+  videos: 'wedding_portal_videos_v5',
+  rsvps: 'wedding_portal_rsvps_v5'
 };
 
 function readLocal<T>(key: string, fallback: T): T {
