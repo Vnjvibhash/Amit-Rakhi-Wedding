@@ -123,7 +123,7 @@ export const DEFAULT_COUPLE: CoupleDetails = {
       location: 'Madhubani, Bihar',
       description:
         'With the warm blessings of Shri Badrinarayan Singh, Shri Ramvriksh Singh, and both families from Chhadapatti & Paroriyahi, Amit & Rakhi’s sacred alliance was finalized.',
-      imageUrl: '/images/gallery/family-1.jpg'
+      imageUrl: '/images/couple/couple-hero.jpg'
     },
     {
       id: 'm2',
