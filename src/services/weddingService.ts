@@ -238,7 +238,7 @@ export function subscribeVideos(cb: (data: WeddingVideo[]) => void): () => void 
 }
 
 export function subscribeRsvps(cb: (data: GuestRSVP[]) => void, enabled = true): () => void {
-  if (!enabled) return () => {};
+  if (!enabled) return () => { };
   if (!isFirebaseConfigured || !db) {
     cb(readLocal(STORAGE_KEYS.rsvps, DEFAULT_RSVPS));
     const handler = () => cb(readLocal(STORAGE_KEYS.rsvps, DEFAULT_RSVPS));
