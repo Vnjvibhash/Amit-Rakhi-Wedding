@@ -100,7 +100,7 @@ export const DEFAULT_COUPLE: CoupleDetails = {
   bride: {
     fullName: 'Rakhi Kumari',
     nickname: 'Rakhi',
-    photoUrl: '/images/couple/bride.jpg',
+    photoUrl: '/images/couple/bride.jpg?v=2',
     bio: 'Graceful, kind-hearted, and deeply rooted in Mithila traditions—cherishing family values, warmth, and joyful celebrations.',
     parents: 'Daughter of Shri Om Prakash Singh & Smt. Anju Devi',
     grandparents: 'Blessed by the elders of Paroriyahi, Gajhara, Madhubani',
@@ -109,7 +109,7 @@ export const DEFAULT_COUPLE: CoupleDetails = {
   groom: {
     fullName: 'Amit Kumar',
     nickname: 'Amit',
-    photoUrl: '/images/couple/groom.jpg',
+    photoUrl: '/images/couple/groom.jpg?v=2',
     bio: 'Warm, dedicated, and family-loving—proudly carrying forward the traditions and hospitality of the Singh family of Madhubani.',
     parents: 'Son of Shri Bhola Prasad Singh & Smt. Sunita Devi',
     grandparents: 'Blessed by Shri Badrinarayan Singh, Shri Ramvriksh Singh & Elders',
@@ -125,7 +125,7 @@ export const DEFAULT_COUPLE: CoupleDetails = {
       location: 'Madhubani, Bihar',
       description:
         'With the warm blessings of Shri Badrinarayan Singh, Shri Ramvriksh Singh, and both families from Chhadapatti & Paroriyahi, Amit & Rakhi’s sacred alliance was finalized.',
-      imageUrl: '/images/couple/couple-hero.jpg'
+      imageUrl: '/images/couple/couple-hero.jpg?v=2'
     },
     {
       id: 'm2',
@@ -432,7 +432,7 @@ export const DEFAULT_ALBUMS: WeddingAlbum[] = [
     title: 'Amit & Rakhi Portraits',
     category: 'Bride & Groom',
     description: 'Ceremonial portraits of the bride and groom.',
-    coverImageUrl: '/images/couple/couple-hero.jpg',
+    coverImageUrl: '/images/couple/couple-hero.jpg?v=2',
     allowDownload: true,
     order: 7,
     createdAt: '2026-11-07T10:00:00Z'
