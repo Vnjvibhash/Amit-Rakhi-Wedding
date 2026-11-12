@@ -30,7 +30,7 @@ export const FamilyPage: React.FC = () => {
                 Ladke Wale • {couple.groom.hometown}
               </span>
               <h2 className="font-serif text-3xl sm:text-4xl font-bold text-maroon-900 mt-1">
-                Groom’s Family — Chhadapatti, Madhubani
+                Groom’s Family — Chharapatti, Madhubani
               </h2>
               <FloralDivider />
             </div>

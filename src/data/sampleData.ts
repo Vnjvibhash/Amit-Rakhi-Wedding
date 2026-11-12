@@ -34,14 +34,14 @@ export const DEFAULT_SETTINGS: WeddingSettings = {
   welcomeMessage:
     'Humare utsuk nayan aapke swagat hetu pratiksharat rahenge — Your presence and warm blessings are our greatest treasure.',
   invitationMessage:
-    'With the divine grace of Lord Ganesha & Bhagwan Vishnu, Shri Bhola Prasad Singh & Smt. Sunita Devi (Gram Chhadapatti, Post Bathnaha, Madhubani) and Shri Om Prakash Singh & Smt. Anju Devi (Gram Paroriyahi, Post Gajhara, Madhubani) cordially invite you to grace the auspicious Shubh Vivah of Amit Kumar & Rakhi Kumari.',
+    'With the divine grace of Lord Ganesha & Bhagwan Vishnu, Shri Bhola Prasad Singh & Smt. Sunita Devi (Gram Chharapatti, Post Bathnaha, Madhubani) and Shri Om Prakash Singh & Smt. Anju Devi (Gram Paroriyahi, Post Gajhara, Madhubani) cordially invite you to grace the auspicious Shubh Vivah of Amit Kumar & Rakhi Kumari.',
   familyBlessingHeader: 'With the Blessings of Our Families',
   weddingDateISO: '2026-11-25T20:00:00+05:30',
   weddingDateFormatted: '25th November 2026',
   primaryVenueName: 'Phulparas to Babubarhi',
   primaryVenueCity: 'Madhubani, Bihar',
   primaryVenueAddress:
-    'Phulparas (Gram Chhadapatti, Post Bathnaha) — Babubarhi (Gram Paroriyahi, Post Gajhara), Madhubani, Bihar',
+    'Phulparas (Gram Chharapatti, Post Bathnaha) — Babubarhi (Gram Paroriyahi, Post Gajhara), Madhubani, Bihar',
   googleMapsEmbedUrl:
     'https://www.google.com/maps?ll=26.4418185,86.3940377&z=12&output=embed',
   googleMapsDirectionsUrl:
@@ -82,13 +82,13 @@ export const DEFAULT_SETTINGS: WeddingSettings = {
       }
     ],
     parkingInfo:
-      'Spacious dedicated family & guest parking is arranged near the Gram Chhadapatti (Bathnaha) wedding courtyard and Gram Paroriyahi (Gajhara) Vivah Mandap with volunteers guiding arrivals.',
+      'Spacious dedicated family & guest parking is arranged near the Gram Chharapatti (Bathnaha) wedding courtyard and Gram Paroriyahi (Gajhara) Vivah Mandap with volunteers guiding arrivals.',
     transportationInfo:
-      'Baraat departs from Gram Chhadapatti (Post Bathnaha) at 8:00 PM sharp on Wednesday, 25th November 2026 towards Gram Paroriyahi (Post Gajhara). Family vehicles and guest shuttles are coordinated from Madhubani town & station.',
+      'Baraat departs from Gram Chharapatti (Post Bathnaha) at 8:00 PM sharp on Wednesday, 25th November 2026 towards Gram Paroriyahi (Post Gajhara). Family vehicles and guest shuttles are coordinated from Madhubani town & station.',
     travelInstructions: [
       'Nearest Airport: Darbhanga Airport (DBR) — approx. 42 km (1 hr 15 mins drive).',
       'Nearest Railway Station: Madhubani Railway Station (MBI) / Sakri Junction (SKI) / Jaynagar.',
-      'Priti Bhoj begins at 4:00 PM on Monday, 23rd November 2026 at Gram Chhadapatti, Post Bathnaha.',
+      'Priti Bhoj begins at 4:00 PM on Monday, 23rd November 2026 at Gram Chharapatti, Post Bathnaha.',
       'Baraat departure is scheduled promptly at 8:00 PM on Wednesday, 25th November 2026.',
       'Shubh Mundan ceremony of Rachit & Radhika will be celebrated on Thursday, 26th November 2026.'
     ]
@@ -113,7 +113,7 @@ export const DEFAULT_COUPLE: CoupleDetails = {
     bio: 'Warm, dedicated, and family-loving—proudly carrying forward the traditions and hospitality of the Singh family of Madhubani.',
     parents: 'Son of Shri Bhola Prasad Singh & Smt. Sunita Devi',
     grandparents: 'Blessed by Shri Badrinarayan Singh, Shri Ramvriksh Singh & Elders',
-    hometown: 'Gram Chhadapatti, Post Bathnaha, Madhubani, Bihar'
+    hometown: 'Gram Chharapatti, Post Bathnaha, Madhubani, Bihar'
   },
   storySummary:
     '“बनी थी सीता राम के लिए, स्वयंवर तो एक बहाना था, अमित की जिंदगी में तो राखी को ही आना था।” — Two hearts and two respected families of Mithila united by destiny, devotion, and timeless blessings.',
@@ -124,14 +124,14 @@ export const DEFAULT_COUPLE: CoupleDetails = {
       title: 'Two Mithila Families Unite',
       location: 'Madhubani, Bihar',
       description:
-        'With the warm blessings of Shri Badrinarayan Singh, Shri Ramvriksh Singh, and both families from Chhadapatti & Paroriyahi, Amit & Rakhi’s sacred alliance was finalized.',
+        'With the warm blessings of Shri Badrinarayan Singh, Shri Ramvriksh Singh, and both families from Chharapatti & Paroriyahi, Amit & Rakhi’s sacred alliance was finalized.',
       imageUrl: '/images/couple/couple-hero.jpg?v=2'
     },
     {
       id: 'm2',
       year: '23 November 2026',
       title: 'Priti Bhoj (प्रिति भोज)',
-      location: 'Gram Chhadapatti, Bathnaha, Madhubani',
+      location: 'Gram Chharapatti, Bathnaha, Madhubani',
       description:
         'Auspicious community feast starting 4:00 PM onwards on Monday, 23rd November 2026 with warm Mithila hospitality.',
       imageUrl: '/images/events/reception.jpg'
@@ -149,7 +149,7 @@ export const DEFAULT_COUPLE: CoupleDetails = {
       id: 'm4',
       year: '25–26 November 2026',
       title: 'Matkor, Shubh Vivah & Shubh Mundan',
-      location: 'Gram Chhadapatti & Gram Paroriyahi, Madhubani',
+      location: 'Gram Chharapatti & Gram Paroriyahi, Madhubani',
       description:
         'Matkor at 5:00 PM & Baraat at 8:00 PM on Wednesday 25th Nov for Shubh Vivah, followed by Shubh Mundan of Rachit & Radhika on Thursday 26th Nov.',
       imageUrl: '/images/events/vivah.jpg'
@@ -175,7 +175,7 @@ export const DEFAULT_FAMILY: FamilyMember[] = [
     side: 'groom',
     generation: 'parents',
     photoUrl: '/images/family/groom-parents.jpg',
-    bio: 'Residents of Gram Chhadapatti, Post Bathnaha, Madhubani, Bihar — eagerly awaiting your gracious presence to bless Amit & Rakhi.',
+    bio: 'Residents of Gram Chharapatti, Post Bathnaha, Madhubani, Bihar — eagerly awaiting your gracious presence to bless Amit & Rakhi.',
     phone: '+91 98350 11223',
     whatsapp: '919835011223',
     isContactCoordinator: true,
@@ -227,8 +227,8 @@ export const DEFAULT_EVENTS: WeddingEvent[] = [
     date: '2026-11-23',
     startTime: '16:00',
     endTime: '22:00',
-    venueName: 'Singh Family Courtyard, Gram Chhadapatti',
-    fullAddress: 'Gram Chhadapatti, Post Bathnaha, Madhubani, Bihar',
+    venueName: 'Singh Family Courtyard, Gram Chharapatti',
+    fullAddress: 'Gram Chharapatti, Post Bathnaha, Madhubani, Bihar',
     description:
       'Auspicious Priti Bhoj (wedding feast) hosted with love and warmth on Monday, 23rd November 2026 from 4:00 PM onwards.',
     imageUrl: '/images/events/reception.jpg',
@@ -245,7 +245,7 @@ export const DEFAULT_EVENTS: WeddingEvent[] = [
     date: '2026-11-24',
     startTime: '10:00',
     endTime: '13:30',
-    venueName: 'Aangan Courtyard, Gram Chhadapatti & Paroriyahi',
+    venueName: 'Aangan Courtyard, Gram Chharapatti & Paroriyahi',
     fullAddress: 'Madhubani, Bihar',
     description:
       'Morning Haldi rituals on Tuesday, 24th November 2026 with sacred turmeric paste, marigold petals, and joyful Maithili geet.',
@@ -281,8 +281,8 @@ export const DEFAULT_EVENTS: WeddingEvent[] = [
     date: '2026-11-25',
     startTime: '17:00',
     endTime: '18:30',
-    venueName: 'Village Sacred Ground, Gram Chhadapatti',
-    fullAddress: 'Gram Chhadapatti, Post Bathnaha, Madhubani, Bihar',
+    venueName: 'Village Sacred Ground, Gram Chharapatti',
+    fullAddress: 'Gram Chharapatti, Post Bathnaha, Madhubani, Bihar',
     description:
       'Sacred Matkor earth-worship ritual on Wednesday, 25th November 2026 at 5:00 PM led by the women of the family with traditional Mithila hymns.',
     imageUrl: '/images/events/matkor.jpg',
@@ -299,7 +299,7 @@ export const DEFAULT_EVENTS: WeddingEvent[] = [
     date: '2026-11-25',
     startTime: '20:00',
     endTime: '21:30',
-    venueName: 'Departs Gram Chhadapatti to Gram Paroriyahi',
+    venueName: 'Departs Gram Chharapatti to Gram Paroriyahi',
     fullAddress: 'From Post Bathnaha to Post Gajhara, Madhubani, Bihar',
     description:
       'Grand wedding procession departing promptly at 8:00 PM on Wednesday, 25th November 2026 with dhol, shehnai, lights, and festive celebration.',
@@ -353,8 +353,8 @@ export const DEFAULT_EVENTS: WeddingEvent[] = [
     date: '2026-11-26',
     startTime: '10:30',
     endTime: '13:30',
-    venueName: 'Singh Family Courtyard, Gram Chhadapatti',
-    fullAddress: 'Gram Chhadapatti, Post Bathnaha, Madhubani, Bihar',
+    venueName: 'Singh Family Courtyard, Gram Chharapatti',
+    fullAddress: 'Gram Chharapatti, Post Bathnaha, Madhubani, Bihar',
     description:
       'Auspicious Shubh Mundan ceremony of beloved children Rachit & Radhika on Thursday, 26th November 2026 with traditional prayers and elders’ blessings.',
     imageUrl: '/images/events/mandap.jpg',
