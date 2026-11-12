@@ -1,0 +1,78 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isSignedIn() &&
+        exists(/databases/$(database)/documents/admin_users/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/admin_users/$(request.auth.uid)).data.role in ['admin', 'super_admin'];
+    }
+
+    // Public wedding content (readable by guests, writable only by verified admins)
+    match /wedding_settings/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /couple_details/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /family_members/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /wedding_events/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /wedding_albums/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /wedding_photos/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /wedding_videos/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Guest RSVPs: guests can submit valid RSVPs; only admins can read/edit/delete all RSVPs
+    match /guest_rsvps/{rsvpId} {
+      allow create: if
+        request.resource.data.guestName is string &&
+        request.resource.data.guestName.size() >= 2 &&
+        request.resource.data.guestName.size() <= 120 &&
+        request.resource.data.mobileNumber is string &&
+        request.resource.data.mobileNumber.size() >= 8 &&
+        request.resource.data.mobileNumber.size() <= 20 &&
+        request.resource.data.attending in ['attending', 'not_attending', 'maybe'] &&
+        request.resource.data.guestCount is int &&
+        request.resource.data.guestCount >= 1 &&
+        request.resource.data.guestCount <= 25 &&
+        request.resource.data.eventsAttending is list;
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Admin user role records: users can read their own role doc; only super_admin or console manages roles
+    match /admin_users/{uid} {
+      allow read: if isSignedIn() && (request.auth.uid == uid || isAdmin());
+      allow write: if isSignedIn() &&
+        exists(/databases/$(database)/documents/admin_users/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/admin_users/$(request.auth.uid)).data.role == 'super_admin';
+    }
+  }
+}
+

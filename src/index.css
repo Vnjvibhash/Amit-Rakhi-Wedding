@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    background-color: #FAF6EE;
+    color: #2E0308;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  }
+}
+
+@layer components {
+  .royal-card {
+    @apply bg-ivory-pure/95 border border-gold-400/40 rounded-2xl shadow-royal backdrop-blur-sm;
+  }
+
+  .btn-royal {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium text-sm tracking-wide transition-all duration-300 bg-gradient-to-r from-maroon-800 via-maroon-700 to-maroon-800 text-ivory-pure border border-gold-400/50 shadow-royal hover:shadow-gold hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-semibold text-sm tracking-wide transition-all duration-300 bg-gradient-to-r from-gold-300 via-gold-500 to-gold-600 text-maroon-950 shadow-gold hover:brightness-105 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-outline-gold {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full font-medium text-sm tracking-wide transition-all duration-300 border border-gold-500/70 text-maroon-800 bg-ivory-pure/80 hover:bg-gold-50 hover:border-gold-600;
+  }
+
+  .input-royal {
+    @apply w-full rounded-xl border border-gold-400/50 bg-ivory-pure px-4 py-3 text-sm text-maroon-950 placeholder:text-maroon-900/40 focus:border-maroon-700 focus:outline-none focus:ring-2 focus:ring-gold-400/40 transition-all;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24 px-4 sm:px-6 lg:px-8;
+  }
+}
+
+/* Custom subtle gold scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F5EBD6;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #D4AF37, #8A1525);
+  border-radius: 9999px;
+}
+
+/* Ornamental pattern overlay */
+.bg-mandala-pattern {
+  background-image: radial-gradient(circle at 25px 25px, rgba(212, 175, 55, 0.08) 2px, transparent 0),
+    radial-gradient(circle at 75px 75px, rgba(107, 15, 26, 0.05) 2px, transparent 0);
+  background-size: 100px 100px;
+}
+

@@ -1,0 +1,64 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function isAdmin() {
+      return request.auth != null &&
+        firestore.exists(/databases/(default)/documents/admin_users/$(request.auth.uid)) &&
+        firestore.get(/databases/(default)/documents/admin_users/$(request.auth.uid)).data.role in ['admin', 'super_admin'];
+    }
+
+    function isValidImage() {
+      return request.resource.contentType.matches('image/.*') &&
+        request.resource.size < 10 * 1024 * 1024;
+    }
+
+    function isValidVideo() {
+      return request.resource.contentType.matches('video/.*') &&
+        request.resource.size < 150 * 1024 * 1024;
+    }
+
+    function isValidAudio() {
+      return request.resource.contentType.matches('audio/.*') &&
+        request.resource.size < 20 * 1024 * 1024;
+    }
+
+    match /wedding/photos/{allPaths=**} {
+      allow read: if true;
+      allow write: if isAdmin() && isValidImage();
+      allow delete: if isAdmin();
+    }
+
+    match /wedding/events/{allPaths=**} {
+      allow read: if true;
+      allow write: if isAdmin() && isValidImage();
+      allow delete: if isAdmin();
+    }
+
+    match /wedding/family/{allPaths=**} {
+      allow read: if true;
+      allow write: if isAdmin() && isValidImage();
+      allow delete: if isAdmin();
+    }
+
+    match /wedding/couple/{allPaths=**} {
+      allow read: if true;
+      allow write: if isAdmin() && isValidImage();
+      allow delete: if isAdmin();
+    }
+
+    match /wedding/videos/{allPaths=**} {
+      allow read: if true;
+      allow write: if isAdmin() && isValidVideo();
+      allow delete: if isAdmin();
+    }
+
+    match /wedding/audio/{allPaths=**} {
+      allow read: if true;
+      allow write: if isAdmin() && isValidAudio();
+      allow delete: if isAdmin();
+    }
+  }
+}
+
