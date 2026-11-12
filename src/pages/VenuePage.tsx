@@ -36,7 +36,7 @@ export const VenuePage: React.FC = () => {
                   className="w-full h-52 object-cover rounded-2xl border border-gold-400/50 mb-6"
                 />
                 <span className="text-xs uppercase tracking-[0.25em] text-gold-700 font-semibold">
-                  Royal Wedding Destination
+                  Wedding Route &amp; Travel Corridor
                 </span>
                 <h2 className="font-serif text-3xl sm:text-4xl font-bold text-maroon-900 mt-1">
                   {settings.primaryVenueName}
@@ -53,14 +53,14 @@ export const VenuePage: React.FC = () => {
                   rel="noreferrer"
                   className="btn-royal w-full"
                 >
-                  <Navigation className="w-4 h-4" /> Get Directions on Google Maps
+                  <Navigation className="w-4 h-4" /> View Route on Google Maps
                 </a>
               </div>
             </div>
 
             <div className="lg:col-span-7 min-h-[380px] bg-beige-soft">
               <iframe
-                title={`${settings.primaryVenueName} Location Map`}
+                title="Phulparas to Babubarhi Route Map"
                 src={settings.googleMapsEmbedUrl}
                 className="w-full h-full min-h-[380px] border-0"
                 loading="lazy"

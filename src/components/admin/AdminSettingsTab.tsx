@@ -169,6 +169,20 @@ export const AdminSettingsTab: React.FC = () => {
             className="input-royal"
           />
           <input
+            type="url"
+            value={form.googleMapsEmbedUrl}
+            onChange={(e) => setForm({ ...form, googleMapsEmbedUrl: e.target.value })}
+            placeholder="Google Maps Embed URL (iframe)"
+            className="input-royal"
+          />
+          <input
+            type="url"
+            value={form.googleMapsDirectionsUrl}
+            onChange={(e) => setForm({ ...form, googleMapsDirectionsUrl: e.target.value })}
+            placeholder="Google Maps Directions / Route URL"
+            className="input-royal"
+          />
+          <input
             type="text"
             value={form.contactPhone}
             onChange={(e) => setForm({ ...form, contactPhone: e.target.value })}
