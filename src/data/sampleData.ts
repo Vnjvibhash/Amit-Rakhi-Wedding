@@ -29,7 +29,7 @@ export const DEFAULT_SETTINGS: WeddingSettings = {
   coupleDisplayName: 'Amit & Rakhi',
   groomFirstName: 'Amit',
   brideFirstName: 'Rakhi',
-  weddingHeadline: 'Bani Thi Sita Ram Ke Liye, Amit Ki Zindagi Mein Rakhi Ko Hi Aana Tha',
+  weddingHeadline: 'Bani Thi Sita Ram Ke Liye, Swayamwar To Ek Bahana Tha, Amit Ki Zindagi Mein Rakhi Ko Hi Aana Tha',
   subHeadline: 'Shubh Panigrahan Sanskar • Vivah Invitation',
   welcomeMessage:
     'Humare utsuk nayan aapke swagat hetu pratiksharat rahenge — Your presence and warm blessings are our greatest treasure.',
