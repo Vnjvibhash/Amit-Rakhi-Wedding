@@ -133,12 +133,24 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="mt-10 pt-6 border-t border-gold-400/15 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-beige-soft/60">
+        <div className="mt-10 pt-6 border-t border-gold-400/15 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-beige-soft/70">
           <p className="flex items-center gap-1.5">
             Crafted with <Heart className="w-3.5 h-3.5 text-gold-400 fill-gold-400" /> for{' '}
             {settings.coupleDisplayName}
           </p>
-          <p>Shubh Vivah Digital Wedding Portal</p>
+          <p className="flex items-center gap-1.5 text-center sm:text-right">
+            <span>Created by</span>
+            <span className="text-gold-300 font-semibold">VivekaJee</span>
+            <span>&amp;</span>
+            <a
+              href="https://innovateria.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gold-300 font-semibold hover:text-gold-200 hover:underline transition"
+            >
+              Innovateria.in
+            </a>
+          </p>
         </div>
       </div>
     </footer>
