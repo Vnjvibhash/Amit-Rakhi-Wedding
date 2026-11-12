@@ -53,14 +53,14 @@ export const VenuePage: React.FC = () => {
                   rel="noreferrer"
                   className="btn-royal w-full"
                 >
-                  <Navigation className="w-4 h-4" /> View Route on Google Maps
+                  <Navigation className="w-4 h-4" /> Open Region Map on Google Maps
                 </a>
               </div>
             </div>
 
             <div className="lg:col-span-7 min-h-[380px] bg-beige-soft">
               <iframe
-                title="Phulparas to Babubarhi Route Map"
+                title="Phulparas &amp; Babubarhi Region Map"
                 src={settings.googleMapsEmbedUrl}
                 className="w-full h-full min-h-[380px] border-0"
                 loading="lazy"

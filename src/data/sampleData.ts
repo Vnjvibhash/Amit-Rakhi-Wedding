@@ -43,9 +43,9 @@ export const DEFAULT_SETTINGS: WeddingSettings = {
   primaryVenueAddress:
     'Phulparas (Gram Chhadapatti, Post Bathnaha) — Babubarhi (Gram Paroriyahi, Post Gajhara), Madhubani, Bihar',
   googleMapsEmbedUrl:
-    'https://www.google.com/maps?saddr=Phulparas,+Bihar&daddr=Babubarhi,+Bihar&output=embed',
+    'https://www.google.com/maps?ll=26.4418185,86.3940377&z=12&output=embed',
   googleMapsDirectionsUrl:
-    'https://www.google.com/maps/dir/Phulparas,+Bihar/Babubarhi,+Bihar',
+    'https://www.google.com/maps/@26.4418185,86.3940377,12.23z',
   backgroundMusicUrl: '/audio/wedding-melody.wav',
   musicTrackTitle: 'Raag Yaman — Sacred Vivah Melody',
   allowPhotoDownload: true,
@@ -233,7 +233,7 @@ export const DEFAULT_EVENTS: WeddingEvent[] = [
       'Auspicious Priti Bhoj (wedding feast) hosted with love and warmth on Monday, 23rd November 2026 from 4:00 PM onwards.',
     imageUrl: '/images/events/reception.jpg',
     dressCode: 'Traditional Indian Festive Attire',
-    googleMapsUrl: 'https://www.google.com/maps/dir/Phulparas,+Bihar/Babubarhi,+Bihar',
+    googleMapsUrl: 'https://www.google.com/maps/@26.4418185,86.3940377,12.23z',
     statusOverride: 'auto',
     highlight: true,
     order: 1
@@ -251,7 +251,7 @@ export const DEFAULT_EVENTS: WeddingEvent[] = [
       'Morning Haldi rituals on Tuesday, 24th November 2026 with sacred turmeric paste, marigold petals, and joyful Maithili geet.',
     imageUrl: '/images/events/haldi.jpg',
     dressCode: 'Mustard Yellow & Marigold Shades',
-    googleMapsUrl: 'https://www.google.com/maps/dir/Phulparas,+Bihar/Babubarhi,+Bihar',
+    googleMapsUrl: 'https://www.google.com/maps/@26.4418185,86.3940377,12.23z',
     statusOverride: 'auto',
     highlight: true,
     order: 2
@@ -269,7 +269,7 @@ export const DEFAULT_EVENTS: WeddingEvent[] = [
       'Traditional bridal & family henna artistry on Tuesday, 24th November 2026 accompanied by folk songs, dholak beats, and festive sweets.',
     imageUrl: '/images/events/mehendi.jpg',
     dressCode: 'Emerald Green & Festive Pastels',
-    googleMapsUrl: 'https://www.google.com/maps/dir/Phulparas,+Bihar/Babubarhi,+Bihar',
+    googleMapsUrl: 'https://www.google.com/maps/@26.4418185,86.3940377,12.23z',
     statusOverride: 'auto',
     highlight: false,
     order: 3
@@ -287,7 +287,7 @@ export const DEFAULT_EVENTS: WeddingEvent[] = [
       'Sacred Matkor earth-worship ritual on Wednesday, 25th November 2026 at 5:00 PM led by the women of the family with traditional Mithila hymns.',
     imageUrl: '/images/events/matkor.jpg',
     dressCode: 'Traditional Red & Yellow Saree / Ethnic Wear',
-    googleMapsUrl: 'https://www.google.com/maps/dir/Phulparas,+Bihar/Babubarhi,+Bihar',
+    googleMapsUrl: 'https://www.google.com/maps/@26.4418185,86.3940377,12.23z',
     statusOverride: 'auto',
     highlight: true,
     order: 4
@@ -305,7 +305,7 @@ export const DEFAULT_EVENTS: WeddingEvent[] = [
       'Grand wedding procession departing promptly at 8:00 PM on Wednesday, 25th November 2026 with dhol, shehnai, lights, and festive celebration.',
     imageUrl: '/images/events/baraat.jpg',
     dressCode: 'Royal Safas, Sherwanis & Festive Sarees',
-    googleMapsUrl: 'https://www.google.com/maps/dir/Phulparas,+Bihar/Babubarhi,+Bihar',
+    googleMapsUrl: 'https://www.google.com/maps/@26.4418185,86.3940377,12.23z',
     statusOverride: 'auto',
     highlight: false,
     order: 5
@@ -323,7 +323,7 @@ export const DEFAULT_EVENTS: WeddingEvent[] = [
       'Varmala exchange, Vedic mantras, Shubh Panigrahan Sanskar, and sacred Saptapadi on Wednesday, 25th November 2026 uniting Amit Kumar & Rakhi Kumari forever.',
     imageUrl: '/images/events/vivah.jpg',
     dressCode: 'Traditional Bridal / Royal Maroon, Crimson & Gold',
-    googleMapsUrl: 'https://www.google.com/maps/dir/Phulparas,+Bihar/Babubarhi,+Bihar',
+    googleMapsUrl: 'https://www.google.com/maps/@26.4418185,86.3940377,12.23z',
     statusOverride: 'auto',
     highlight: true,
     order: 6
@@ -341,7 +341,7 @@ export const DEFAULT_EVENTS: WeddingEvent[] = [
       'Sacred morning completion of nuptial blessings and heartfelt Vidaai on Thursday, 26th November 2026 as Rakhi embarks on her new journey with Amit.',
     imageUrl: '/images/events/vidaai.jpg',
     dressCode: 'Subtle Morning Silk & Pastels',
-    googleMapsUrl: 'https://www.google.com/maps/dir/Phulparas,+Bihar/Babubarhi,+Bihar',
+    googleMapsUrl: 'https://www.google.com/maps/@26.4418185,86.3940377,12.23z',
     statusOverride: 'auto',
     highlight: false,
     order: 7
@@ -359,7 +359,7 @@ export const DEFAULT_EVENTS: WeddingEvent[] = [
       'Auspicious Shubh Mundan ceremony of beloved children Rachit & Radhika on Thursday, 26th November 2026 with traditional prayers and elders’ blessings.',
     imageUrl: '/images/events/mandap.jpg',
     dressCode: 'Traditional Festive Morning Attire',
-    googleMapsUrl: 'https://www.google.com/maps/dir/Phulparas,+Bihar/Babubarhi,+Bihar',
+    googleMapsUrl: 'https://www.google.com/maps/@26.4418185,86.3940377,12.23z',
     statusOverride: 'auto',
     highlight: false,
     order: 8

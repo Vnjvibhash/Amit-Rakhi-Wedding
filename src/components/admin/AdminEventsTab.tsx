@@ -38,7 +38,7 @@ const EMPTY_EVENT: Omit<WeddingEvent, 'id'> = {
   description: '',
   imageUrl: '/images/events/vivah.jpg',
   dressCode: '',
-  googleMapsUrl: 'https://www.google.com/maps/dir/Phulparas,+Bihar/Babubarhi,+Bihar',
+  googleMapsUrl: 'https://www.google.com/maps/@26.4418185,86.3940377,12.23z',
   statusOverride: 'auto',
   highlight: false,
   order: 1
