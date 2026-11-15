@@ -46,8 +46,8 @@ export const DEFAULT_SETTINGS: WeddingSettings = {
     'https://www.google.com/maps?ll=26.4418185,86.3940377&z=12&output=embed',
   googleMapsDirectionsUrl:
     'https://www.google.com/maps/@26.4418185,86.3940377,12.23z',
-  backgroundMusicUrl: '/audio/wedding-melody.wav',
-  musicTrackTitle: 'Raag Yaman — Sacred Vivah Melody',
+  backgroundMusicUrl: '/audio/maithili-mangal-geet.mp3',
+  musicTrackTitle: 'Maithili Vivah Geet — Mangal Gaan (सुभे सुभे के लगनवा)',
   allowPhotoDownload: true,
   allowGuestPhotoUpload: true,
   hashtag: '#AmitWedsRakhi',

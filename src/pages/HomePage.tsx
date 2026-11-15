@@ -34,6 +34,7 @@ export const HomePage: React.FC = () => {
     .slice(0, 4);
 
   const handleExploreClick = () => {
+    window.dispatchEvent(new CustomEvent('start-wedding-music'));
     exploreRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
