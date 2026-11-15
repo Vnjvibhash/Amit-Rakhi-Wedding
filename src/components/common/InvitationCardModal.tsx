@@ -1,8 +1,9 @@
 import React, { useRef, useState } from 'react';
 import html2canvas from 'html2canvas';
-import { Download, Printer, X } from 'lucide-react';
+import { Download, X } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useWedding } from '../../context/WeddingContext';
+import { LanguageToggle, useLanguage } from '../../context/LanguageContext';
 import { FloralDivider, ToranCorner } from './MandalaArtwork';
 
 interface InvitationCardModalProps {
@@ -12,6 +13,7 @@ interface InvitationCardModalProps {
 
 export const InvitationCardModal: React.FC<InvitationCardModalProps> = ({ open, onClose }) => {
   const { settings, couple } = useWedding();
+  const { t } = useLanguage();
   const cardRef = useRef<HTMLDivElement | null>(null);
   const [downloading, setDownloading] = useState(false);
 
@@ -27,12 +29,12 @@ export const InvitationCardModal: React.FC<InvitationCardModalProps> = ({ open, 
         backgroundColor: '#4A0710'
       });
       const link = document.createElement('a');
-      link.download = `${settings.coupleDisplayName.replace(/[^a-zA-Z0-9]+/g, '-')}-Invitation-Card.png`;
+      link.download = `${settings.coupleDisplayName.replace(/[^a-zA-Z0-9\u0900-\u097F]+/g, '-')}-Wedding-Card.png`;
       link.href = canvas.toDataURL('image/png');
       link.click();
-      toast.success('Wedding invitation card downloaded!');
+      toast.success(t('card.downloadSuccess'));
     } catch {
-      toast.error('Could not generate card image.');
+      toast.error(t('card.downloadError'));
     } finally {
       setDownloading(false);
     }
@@ -43,13 +45,13 @@ export const InvitationCardModal: React.FC<InvitationCardModalProps> = ({ open, 
       className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto"
       role="dialog"
       aria-modal="true"
-      aria-label="Digital Wedding Invitation Card"
+      aria-label={t('card.dialogTitle')}
     >
       <div className="relative max-w-xl w-full my-auto">
         <button
           onClick={onClose}
-          className="absolute -top-3 -right-3 z-20 w-9 h-9 rounded-full bg-ivory-pure text-maroon-900 shadow-lg flex items-center justify-center hover:bg-gold-100"
-          aria-label="Close invitation card"
+          className="absolute -top-3 -right-3 z-20 w-9 h-9 rounded-full bg-ivory-pure text-maroon-900 shadow-lg flex items-center justify-center hover:bg-gold-100 transition"
+          aria-label={t('card.close')}
         >
           <X className="w-5 h-5" />
         </button>
@@ -71,13 +73,13 @@ export const InvitationCardModal: React.FC<InvitationCardModalProps> = ({ open, 
               className="w-20 h-20 rounded-full mx-auto border-2 border-gold-400 shadow-gold mb-4"
             />
             <p className="font-display text-[11px] uppercase tracking-[0.3em] text-gold-300">
-              || Shri Ganeshaya Namah ||
+              {t('home.hero.invoc')}
             </p>
             <p className="text-xs uppercase tracking-[0.25em] text-beige-soft/80 mt-2">
               {settings.subHeadline}
             </p>
 
-            <h2 className="font-serif text-4xl sm:text-5xl font-bold text-gold-300 mt-3">
+            <h2 className="font-serif text-3xl sm:text-5xl font-bold text-gold-300 mt-3">
               {settings.coupleDisplayName}
             </h2>
             <p className="text-xs text-beige-soft/85 mt-2">
@@ -86,7 +88,7 @@ export const InvitationCardModal: React.FC<InvitationCardModalProps> = ({ open, 
 
             <FloralDivider dark />
 
-            <p className="text-sm text-ivory-pure/90 leading-relaxed max-w-md mx-auto">
+            <p className="text-xs sm:text-sm text-ivory-pure/90 leading-relaxed max-w-md mx-auto">
               {settings.invitationMessage}
             </p>
 
@@ -98,23 +100,26 @@ export const InvitationCardModal: React.FC<InvitationCardModalProps> = ({ open, 
               <p className="text-xs text-beige-soft/80">{settings.primaryVenueAddress}</p>
             </div>
 
-            <p className="mt-5 text-[11px] uppercase tracking-[0.2em] text-gold-300/90">
-              {settings.familyBlessingHeader} • {settings.hashtag}
-            </p>
+            <p className="text-xs text-gold-300/80 mt-4 font-mono">{settings.hashtag}</p>
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-3 mt-4">
-          <button onClick={handleDownloadPNG} disabled={downloading} className="btn-gold">
+        {/* Modal Bottom Controls */}
+        <div className="flex flex-wrap items-center justify-between gap-3 mt-4 px-2">
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-ivory-pure/80 font-medium">{t('lang.label')}</span>
+            <LanguageToggle />
+          </div>
+          <button
+            onClick={handleDownloadPNG}
+            disabled={downloading}
+            className="btn-gold !py-2.5 !px-5 !text-xs ml-auto"
+          >
             <Download className="w-4 h-4" />
-            {downloading ? 'Preparing Card...' : 'Download Invitation Card (PNG)'}
-          </button>
-          <button onClick={() => window.print()} className="btn-royal">
-            <Printer className="w-4 h-4" /> Print Card
+            {downloading ? t('card.generating') : t('card.downloadBtn')}
           </button>
         </div>
       </div>
     </div>
   );
 };
-

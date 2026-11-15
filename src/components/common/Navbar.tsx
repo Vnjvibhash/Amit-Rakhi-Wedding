@@ -3,25 +3,27 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Menu, ShieldCheck, X } from 'lucide-react';
 import { useWedding } from '../../context/WeddingContext';
 import { useAuth } from '../../context/AuthContext';
-
-const NAV_LINKS = [
-  { to: '/', label: 'Home' },
-  { to: '/our-story', label: 'Our Story' },
-  { to: '/events', label: 'Events' },
-  { to: '/schedule', label: 'Schedule' },
-  { to: '/gallery', label: 'Gallery' },
-  { to: '/videos', label: 'Videos' },
-  { to: '/family', label: 'Family' },
-  { to: '/venue', label: 'Venue' },
-  { to: '/contact', label: 'Contact' }
-];
+import { LanguageToggle, useLanguage } from '../../context/LanguageContext';
 
 export const Navbar: React.FC = () => {
   const { settings } = useWedding();
   const { isAdmin } = useAuth();
+  const { t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+
+  const navLinks = [
+    { to: '/', label: t('nav.home') },
+    { to: '/our-story', label: t('nav.ourStory') },
+    { to: '/events', label: t('nav.events') },
+    { to: '/schedule', label: t('nav.schedule') },
+    { to: '/gallery', label: t('nav.gallery') },
+    { to: '/videos', label: t('nav.videos') },
+    { to: '/family', label: t('nav.family') },
+    { to: '/venue', label: t('nav.venue') },
+    { to: '/contact', label: t('nav.contact') }
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -41,7 +43,8 @@ export const Navbar: React.FC = () => {
           : 'bg-gradient-to-b from-maroon-950/90 via-maroon-900/65 to-transparent py-3.5'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between gap-3">
+        {/* Brand / Couple Monogram */}
         <Link to="/" className="flex items-center gap-3 group shrink-0">
           <img
             src="/images/wedding-logo.png"
@@ -60,7 +63,7 @@ export const Navbar: React.FC = () => {
 
         {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center gap-1" aria-label="Main navigation">
-          {NAV_LINKS.map((item) => (
+          {navLinks.map((item) => (
             <NavLink
               key={item.to}
               to={item.to}
@@ -78,23 +81,27 @@ export const Navbar: React.FC = () => {
           ))}
         </nav>
 
+        {/* Desktop Right Controls (Language Switcher, Admin & RSVP) */}
         <div className="hidden lg:flex items-center gap-2.5 shrink-0">
+          <LanguageToggle />
+
           <Link
             to={isAdmin ? '/admin' : '/admin/login'}
-            title={isAdmin ? 'Admin Dashboard' : 'Admin Login'}
+            title={isAdmin ? t('nav.adminDashboard') : t('nav.adminPortal')}
             className="p-2 rounded-full text-gold-300/85 hover:text-gold-200 hover:bg-white/10 transition-colors"
           >
             <ShieldCheck className="w-4 h-4" />
           </Link>
-          <Link to="/rsvp" className="btn-gold !py-2 !px-5 !text-xs uppercase tracking-wider">
-            RSVP Now
+          <Link to="/rsvp" className="btn-gold !py-2 !px-4 !text-xs uppercase tracking-wider">
+            {t('nav.rsvpNow')}
           </Link>
         </div>
 
-        {/* Mobile menu button */}
+        {/* Mobile controls */}
         <div className="flex lg:hidden items-center gap-2">
-          <Link to="/rsvp" className="btn-gold !py-1.5 !px-3.5 !text-xs">
-            RSVP
+          <LanguageToggle className="!scale-90" />
+          <Link to="/rsvp" className="btn-gold !py-1.5 !px-3 !text-xs">
+            {t('nav.rsvp')}
           </Link>
           <button
             type="button"
@@ -110,33 +117,43 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Drawer */}
       {mobileOpen && (
-        <div className="lg:hidden bg-maroon-950/98 border-t border-gold-400/30 px-4 py-4 space-y-1 shadow-2xl">
-          {NAV_LINKS.map((item) => (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              end={item.to === '/'}
-              className={({ isActive }) =>
-                `block px-4 py-2.5 rounded-xl text-sm font-medium transition-colors ${
-                  isActive
-                    ? 'bg-gold-500/20 text-gold-300 border border-gold-400/40'
-                    : 'text-ivory-pure/90 hover:bg-white/5'
-                }`
-              }
-            >
-              {item.label}
-            </NavLink>
-          ))}
+        <div className="lg:hidden bg-maroon-950/98 border-t border-gold-400/30 px-4 py-4 space-y-2 shadow-2xl">
+          <div className="flex items-center justify-between pb-2 border-b border-gold-400/20">
+            <span className="text-xs uppercase tracking-wider text-gold-300 font-medium">
+              {t('lang.label')}
+            </span>
+            <LanguageToggle />
+          </div>
+
+          <div className="space-y-1">
+            {navLinks.map((item) => (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                end={item.to === '/'}
+                className={({ isActive }) =>
+                  `block px-4 py-2.5 rounded-xl text-sm font-medium transition-colors ${
+                    isActive
+                      ? 'bg-gold-500/20 text-gold-300 border border-gold-400/40'
+                      : 'text-ivory-pure/90 hover:bg-white/5'
+                  }`
+                }
+              >
+                {item.label}
+              </NavLink>
+            ))}
+          </div>
+
           <div className="pt-2 border-t border-gold-400/20 flex items-center justify-between gap-2">
             <Link
               to={isAdmin ? '/admin' : '/admin/login'}
               className="flex items-center gap-2 px-4 py-2 text-xs text-gold-300 hover:underline"
             >
               <ShieldCheck className="w-4 h-4" />
-              {isAdmin ? 'Admin Dashboard' : 'Admin Portal'}
+              {isAdmin ? t('nav.adminDashboard') : t('nav.adminPortal')}
             </Link>
             <Link to="/rsvp" className="btn-gold !py-2 !px-4 !text-xs">
-              Confirm Attendance
+              {t('nav.confirmAttendance')}
             </Link>
           </div>
         </div>
@@ -144,4 +161,3 @@ export const Navbar: React.FC = () => {
     </header>
   );
 };
-

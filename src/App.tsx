@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider } from './context/AuthContext';
+import { LanguageProvider, useLanguage } from './context/LanguageContext';
 import { WeddingProvider, useWedding } from './context/WeddingContext';
 import { Navbar } from './components/common/Navbar';
 import { Footer } from './components/common/Footer';
@@ -20,30 +21,37 @@ import { AdminLoginPage } from './pages/AdminLoginPage';
 import { AdminDashboardPage } from './pages/AdminDashboardPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
-const PAGE_TITLES: Record<string, string> = {
-  '/': 'Digital Wedding Invitation',
-  '/our-story': 'Our Story',
-  '/events': 'Wedding Events & Ceremonies',
-  '/schedule': 'Schedule & Interactive Calendar',
-  '/gallery': 'Photo Gallery',
-  '/videos': 'Wedding Videos & Highlights',
-  '/family': 'With the Blessings of Our Families',
-  '/venue': 'Venue & Travel Guide',
-  '/rsvp': 'Guest RSVP',
-  '/contact': 'Contact Our Families',
-  '/admin/login': 'Admin Portal Login',
-  '/admin': 'Admin Dashboard'
+const PAGE_TITLES: Record<string, { hi: string; en: string }> = {
+  '/': { hi: 'डिजिटल विवाह निमंत्रण', en: 'Digital Wedding Invitation' },
+  '/our-story': { hi: 'हमारी कहानी', en: 'Our Story' },
+  '/events': { hi: 'विवाह कार्यक्रम व संस्कार', en: 'Wedding Events & Ceremonies' },
+  '/schedule': { hi: 'कार्यक्रम तालिका व कैलेंडर', en: 'Schedule & Interactive Calendar' },
+  '/gallery': { hi: 'तस्वीरें व गैलरी', en: 'Photo Gallery' },
+  '/videos': { hi: 'विवाह वीडियो व रील्स', en: 'Wedding Videos & Highlights' },
+  '/family': { hi: 'हमारे परिवारों का आशीर्वाद', en: 'With the Blessings of Our Families' },
+  '/venue': { hi: 'विवाह स्थल व यात्रा मार्गदर्शिका', en: 'Venue & Travel Guide' },
+  '/rsvp': { hi: 'उपस्थिति दर्ज करें (RSVP)', en: 'Guest RSVP' },
+  '/contact': { hi: 'पारिवारिक संपर्क', en: 'Contact Our Families' },
+  '/admin/login': { hi: 'एडमिन पोर्टल लॉगिन', en: 'Admin Portal Login' },
+  '/admin': { hi: 'एडमिन डैशबोर्ड', en: 'Admin Dashboard' }
 };
 
 const RouteMetaManager: React.FC = () => {
   const { pathname } = useLocation();
   const { settings } = useWedding();
+  const { language } = useLanguage();
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    const section = PAGE_TITLES[pathname] || 'Page Not Found';
-    document.title = `${section} | ${settings.coupleDisplayName} Wedding`;
-  }, [pathname, settings.coupleDisplayName]);
+    const titleEntry = PAGE_TITLES[pathname];
+    const section = titleEntry
+      ? titleEntry[language] || titleEntry.hi
+      : language === 'hi'
+      ? 'पृष्ठ नहीं मिला'
+      : 'Page Not Found';
+    const suffix = language === 'hi' ? 'विवाह' : 'Wedding';
+    document.title = `${section} | ${settings.coupleDisplayName} ${suffix}`;
+  }, [pathname, settings.coupleDisplayName, language]);
 
   return null;
 };
@@ -89,11 +97,12 @@ export default function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
-        <WeddingProvider>
-          <AppShell />
-        </WeddingProvider>
+        <LanguageProvider>
+          <WeddingProvider>
+            <AppShell />
+          </WeddingProvider>
+        </LanguageProvider>
       </AuthProvider>
     </BrowserRouter>
   );
 }
-

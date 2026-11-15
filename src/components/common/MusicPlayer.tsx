@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Music, Pause, Play, Volume2, VolumeX } from 'lucide-react';
 import { useWedding } from '../../context/WeddingContext';
+import { useLanguage } from '../../context/LanguageContext';
 
 export const MusicPlayer: React.FC = () => {
   const { settings } = useWedding();
+  const { language } = useLanguage();
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(false);
@@ -20,7 +22,6 @@ export const MusicPlayer: React.FC = () => {
     audio.addEventListener('play', handlePlayEvent);
     audio.addEventListener('pause', handlePauseEvent);
 
-    // Attempt default background playback
     const attemptAutoplay = () => {
       audio
         .play()
@@ -28,8 +29,6 @@ export const MusicPlayer: React.FC = () => {
           setPlaying(true);
         })
         .catch(() => {
-          // Autoplay was restricted by the browser policy without user gesture.
-          // Listen for the first user interaction anywhere on the window.
           const handleFirstGesture = () => {
             audio
               .play()
@@ -87,6 +86,8 @@ export const MusicPlayer: React.FC = () => {
     setMuted(!muted);
   };
 
+  const isHi = language === 'hi';
+
   return (
     <div className="fixed bottom-4 right-4 z-40 flex items-center gap-2">
       <audio
@@ -100,18 +101,28 @@ export const MusicPlayer: React.FC = () => {
           type="button"
           onClick={togglePlay}
           className="w-8 h-8 rounded-full bg-gold-gradient text-maroon-950 flex items-center justify-center hover:scale-105 transition shadow-sm"
-          aria-label={playing ? 'Pause Maithili Vivah Geet' : 'Play Maithili Vivah Geet'}
-          title={playing ? 'Pause Maithili Vivah Geet' : 'Play Maithili Vivah Geet'}
+          aria-label={
+            playing
+              ? isHi ? 'मैथिली विवाह गीत रोकें' : 'Pause Maithili Vivah Geet'
+              : isHi ? 'मैथिली विवाह गीत चलाएं' : 'Play Maithili Vivah Geet'
+          }
+          title={
+            playing
+              ? isHi ? 'संगीत रोकें' : 'Pause Music'
+              : isHi ? 'संगीत चलाएं' : 'Play Music'
+          }
         >
           {playing ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 ml-0.5" />}
         </button>
         <div className="hidden sm:block pr-1 max-w-[170px]">
           <p className="text-[10px] uppercase tracking-wider text-gold-300 flex items-center gap-1 font-semibold">
             <Music className={`w-3 h-3 ${playing ? 'animate-pulse text-gold-400' : ''}`} />
-            {playing ? 'Playing Mangal Geet' : 'Maithili Vivah Geet'}
+            {playing
+              ? isHi ? 'मंगल गीत जारी है' : 'Playing Mangal Geet'
+              : isHi ? 'मैथिली विवाह गीत' : 'Maithili Vivah Geet'}
           </p>
           <p className="text-[11px] text-ivory-pure/90 truncate font-serif">
-            {settings.musicTrackTitle || 'Maithili Vivah Geet — Mangal Gaan'}
+            {settings.musicTrackTitle || (isHi ? 'मैथिली विवाह गीत — मंगल गान' : 'Maithili Vivah Geet — Mangal Gaan')}
           </p>
         </div>
         {playing && (
@@ -119,7 +130,7 @@ export const MusicPlayer: React.FC = () => {
             type="button"
             onClick={toggleMute}
             className="p-1.5 rounded-full text-gold-300 hover:bg-white/10"
-            aria-label={muted ? 'Unmute' : 'Mute'}
+            aria-label={muted ? (isHi ? 'ध्वनि चालू करें' : 'Unmute') : (isHi ? 'ध्वनि बंद करें' : 'Mute')}
           >
             {muted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
           </button>
@@ -128,4 +139,3 @@ export const MusicPlayer: React.FC = () => {
     </div>
   );
 };
-

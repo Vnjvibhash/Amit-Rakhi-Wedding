@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { useWedding } from '../context/WeddingContext';
+import { useLanguage } from '../context/LanguageContext';
 import { CountdownTimer } from '../components/common/CountdownTimer';
 import {
   FloralDivider,
@@ -25,6 +26,7 @@ import { formatDateLong, formatTimeDisplay } from '../utils/calendar';
 
 export const HomePage: React.FC = () => {
   const { settings, couple, events } = useWedding();
+  const { t, language } = useLanguage();
   const exploreRef = useRef<HTMLDivElement | null>(null);
   const [cardModalOpen, setCardModalOpen] = useState(false);
 
@@ -41,14 +43,17 @@ export const HomePage: React.FC = () => {
   const handleCopyLink = async () => {
     try {
       await navigator.clipboard.writeText(window.location.origin);
-      toast.success('Wedding invitation link copied!');
+      toast.success(t('home.share.success'));
     } catch {
-      toast.error('Unable to copy link.');
+      toast.error(t('home.share.error'));
     }
   };
 
   const handleWhatsAppShare = () => {
-    const text = `|| Shubh Vivah || You are warmly invited to the Wedding Celebration of ${settings.coupleDisplayName} on ${settings.weddingDateFormatted} at ${settings.primaryVenueName}, ${settings.primaryVenueCity}. Explore events & RSVP: ${window.location.origin}`;
+    const text =
+      language === 'hi'
+        ? `|| शुभ विवाह || आप सादर आमंत्रित हैं ${settings.coupleDisplayName} के विवाह उत्सव में। तिथि: ${settings.weddingDateFormatted}, शुभ स्थल: ${settings.primaryVenueName}, ${settings.primaryVenueCity}। निमंत्रण पत्र एवं कार्यक्रम विवरण देखें व RSVP करें: ${window.location.origin}`
+        : `|| Shubh Vivah || You are warmly invited to the Wedding Celebration of ${settings.coupleDisplayName} on ${settings.weddingDateFormatted} at ${settings.primaryVenueName}, ${settings.primaryVenueCity}. Explore events & RSVP: ${window.location.origin}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank', 'noopener,noreferrer');
   };
 
@@ -99,7 +104,7 @@ export const HomePage: React.FC = () => {
             transition={{ delay: 0.1 }}
             className="font-display text-xs sm:text-sm uppercase tracking-[0.35em] text-gold-300"
           >
-            || Shri Ganeshaya Namah || • {settings.subHeadline}
+            {t('home.hero.invoc')} • {settings.subHeadline}
           </motion.p>
 
           <motion.h1
@@ -158,16 +163,16 @@ export const HomePage: React.FC = () => {
           >
             <button onClick={handleExploreClick} className="btn-gold !px-8 !py-3.5 text-sm sm:text-base">
               <Sparkles className="w-4 h-4" />
-              Enter Website &amp; Explore Wedding
+              {t('home.hero.enterBtn')}
             </button>
             <Link to="/rsvp" className="btn-royal !px-7 !py-3.5 text-sm sm:text-base">
-              Confirm Attendance (RSVP)
+              {t('home.hero.rsvpBtn')}
             </Link>
             <button
               onClick={() => setCardModalOpen(true)}
               className="inline-flex items-center gap-2 px-5 py-3.5 rounded-full text-sm font-medium border border-gold-400/60 text-gold-200 hover:bg-white/10 transition"
             >
-              <Download className="w-4 h-4" /> Download Invitation Card
+              <Download className="w-4 h-4" /> {t('home.hero.downloadCardBtn')}
             </button>
           </motion.div>
         </div>
@@ -181,7 +186,7 @@ export const HomePage: React.FC = () => {
               {settings.familyBlessingHeader}
             </p>
             <h2 className="font-serif text-4xl sm:text-5xl font-bold text-maroon-900 mt-2">
-              A Cordial Family Invitation
+              {t('home.welcome.title')}
             </h2>
             <FloralDivider />
             <p className="text-base sm:text-lg text-maroon-900/85 leading-relaxed">
@@ -209,7 +214,7 @@ export const HomePage: React.FC = () => {
                 />
               </JharokhaFrame>
               <span className="text-xs uppercase tracking-[0.25em] text-gold-700 font-semibold">
-                The Groom
+                {t('home.welcome.groomLabel')}
               </span>
               <h3 className="font-serif text-3xl font-bold text-maroon-900 mt-1">
                 {couple.groom.fullName}
@@ -234,7 +239,7 @@ export const HomePage: React.FC = () => {
                 />
               </JharokhaFrame>
               <span className="text-xs uppercase tracking-[0.25em] text-gold-700 font-semibold">
-                The Bride
+                {t('home.welcome.brideLabel')}
               </span>
               <h3 className="font-serif text-3xl font-bold text-maroon-900 mt-1">
                 {couple.bride.fullName}
@@ -246,7 +251,7 @@ export const HomePage: React.FC = () => {
 
           <div className="text-center mt-10">
             <Link to="/our-story" className="btn-outline-gold">
-              <Heart className="w-4 h-4 text-maroon-700" /> Read Our Love Story &amp; Journey
+              <Heart className="w-4 h-4 text-maroon-700" /> {t('home.welcome.storyBtn')}
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -258,14 +263,14 @@ export const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <p className="font-display text-xs uppercase tracking-[0.28em] text-gold-300">
-              Auspicious Ceremonies
+              {t('home.ceremonies.eyebrow')}
             </p>
             <h2 className="font-serif text-4xl sm:text-5xl font-bold mt-2">
-              Wedding Festivities
+              {t('home.ceremonies.title')}
             </h2>
             <FloralDivider dark />
             <p className="text-sm text-beige-soft/85">
-              From Priti Bhoj, vibrant Haldi &amp; Mehendi mornings, and Matkor to the sacred Shubh Vivah &amp; Panigrahan Sanskar.
+              {t('home.ceremonies.subtitle')}
             </p>
           </div>
 
@@ -288,13 +293,13 @@ export const HomePage: React.FC = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-maroon-950/80 via-transparent to-transparent" />
                   <span className="absolute bottom-3 left-3 text-[11px] uppercase tracking-wider px-2.5 py-1 rounded-full bg-gold-500 text-maroon-950 font-semibold">
-                    {formatDateLong(evt.date).split(',')[0]}
+                    {formatDateLong(evt.date, language).split(',')[0]}
                   </span>
                 </div>
                 <div className="p-5 flex-1 flex flex-col">
                   <h3 className="font-serif text-2xl font-semibold text-gold-200">{evt.title}</h3>
                   <p className="text-xs text-beige-soft/80 mt-1">
-                    {formatDateLong(evt.date)} • {formatTimeDisplay(evt.startTime)}
+                    {formatDateLong(evt.date, language)} • {formatTimeDisplay(evt.startTime, language)}
                   </p>
                   <p className="text-xs text-gold-300/90 mt-1 flex items-center gap-1">
                     <MapPin className="w-3.5 h-3.5 shrink-0" /> {evt.venueName}
@@ -309,13 +314,14 @@ export const HomePage: React.FC = () => {
 
           <div className="flex flex-wrap items-center justify-center gap-4 mt-10">
             <Link to="/events" className="btn-gold">
-              Explore All {events.length} Ceremonies <ArrowRight className="w-4 h-4" />
+              {t('home.ceremonies.exploreAll', { count: events.length })}{' '}
+              <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               to="/schedule"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-medium border border-gold-400/60 text-gold-200 hover:bg-white/10 transition"
             >
-              <Calendar className="w-4 h-4" /> Interactive Schedule &amp; PDF
+              <Calendar className="w-4 h-4" /> {t('home.ceremonies.scheduleBtn')}
             </Link>
           </div>
         </div>
@@ -325,31 +331,31 @@ export const HomePage: React.FC = () => {
       <section className="section-padding bg-beige-soft/45">
         <div className="max-w-5xl mx-auto royal-card p-8 sm:p-12 text-center">
           <p className="font-display text-xs uppercase tracking-[0.28em] text-maroon-700">
-            Celebrate With Us
+            {t('home.action.eyebrow')}
           </p>
           <h2 className="font-serif text-3xl sm:text-4xl font-bold text-maroon-900 mt-2">
-            Kindly Grace Us With Your Presence
+            {t('home.action.title')}
           </h2>
           <FloralDivider />
           <p className="text-sm sm:text-base text-maroon-900/80 max-w-2xl mx-auto mb-8">
-            Confirm your attendance, view venue travel instructions, browse ceremony photo albums, or share our digital invitation with family.
+            {t('home.action.desc')}
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-3">
             <Link to="/rsvp" className="btn-royal">
-              Submit Your RSVP
+              {t('home.action.rsvpBtn')}
             </Link>
             <Link to="/gallery" className="btn-outline-gold">
-              Browse Photo Gallery
+              {t('home.action.galleryBtn')}
             </Link>
             <Link to="/venue" className="btn-outline-gold">
-              Venue &amp; Travel Guide
+              {t('home.action.venueBtn')}
             </Link>
             <button onClick={handleWhatsAppShare} className="btn-gold">
-              <Share2 className="w-4 h-4" /> WhatsApp Invite
+              <Share2 className="w-4 h-4" /> {t('home.action.whatsappBtn')}
             </button>
             <button onClick={handleCopyLink} className="btn-outline-gold">
-              <Copy className="w-4 h-4" /> Copy Link
+              <Copy className="w-4 h-4" /> {t('home.action.copyLinkBtn')}
             </button>
           </div>
         </div>
@@ -359,4 +365,3 @@ export const HomePage: React.FC = () => {
     </div>
   );
 };
-

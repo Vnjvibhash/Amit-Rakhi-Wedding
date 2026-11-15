@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useLanguage } from '../../context/LanguageContext';
 
 interface CountdownTimerProps {
   targetISO: string;
@@ -30,6 +31,7 @@ function calcTimeLeft(targetISO: string): TimeLeft {
 }
 
 export const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetISO, dark = true }) => {
+  const { t } = useLanguage();
   const [timeLeft, setTimeLeft] = useState<TimeLeft>(() => calcTimeLeft(targetISO));
 
   useEffect(() => {
@@ -40,24 +42,24 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetISO, dark 
 
   if (timeLeft.isPast) {
     return (
-      <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gold-500/20 border border-gold-300/60 text-gold-200 font-serif text-lg">
-        Happily Celebrated — Forever Begins
+      <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gold-500/20 border border-gold-300/60 text-gold-200 font-serif text-base sm:text-lg text-center">
+        {t('countdown.celebrated')}
       </div>
     );
   }
 
   const boxes = [
-    { label: 'Days', value: timeLeft.days },
-    { label: 'Hours', value: timeLeft.hours },
-    { label: 'Minutes', value: timeLeft.minutes },
-    { label: 'Seconds', value: timeLeft.seconds }
+    { label: t('countdown.days'), value: timeLeft.days },
+    { label: t('countdown.hours'), value: timeLeft.hours },
+    { label: t('countdown.minutes'), value: timeLeft.minutes },
+    { label: t('countdown.seconds'), value: timeLeft.seconds }
   ];
 
   return (
     <div className="grid grid-cols-4 gap-2.5 sm:gap-4 max-w-lg mx-auto" role="timer" aria-live="polite">
-      {boxes.map((item) => (
+      {boxes.map((item, idx) => (
         <div
-          key={item.label}
+          key={idx}
           className={`flex flex-col items-center justify-center rounded-2xl px-2 py-3 sm:py-4 border backdrop-blur-md transition-transform hover:scale-105 ${
             dark
               ? 'bg-maroon-950/65 border-gold-400/50 text-ivory-pure shadow-gold'
@@ -68,7 +70,7 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetISO, dark 
             {String(item.value).padStart(2, '0')}
           </span>
           <span
-            className={`text-[10px] sm:text-xs uppercase tracking-[0.2em] mt-1 ${
+            className={`text-[10px] sm:text-xs uppercase tracking-[0.18em] mt-1 font-medium ${
               dark ? 'text-beige-soft/80' : 'text-maroon-800/75'
             }`}
           >
@@ -79,4 +81,3 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetISO, dark 
     </div>
   );
 };
-

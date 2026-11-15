@@ -9,19 +9,21 @@ import {
   Navigation
 } from 'lucide-react';
 import { useWedding } from '../context/WeddingContext';
+import { useLanguage } from '../context/LanguageContext';
 import { PageHeader } from '../components/common/PageHeader';
 import { FloralDivider } from '../components/common/MandalaArtwork';
 
 export const VenuePage: React.FC = () => {
   const { settings } = useWedding();
+  const { t } = useLanguage();
   const { venueDetails } = settings;
 
   return (
     <div>
       <PageHeader
-        eyebrow="Destination & Hospitality"
-        title="Venue & Travel Guide"
-        subtitle={`Everything you need for a seamless journey to ${settings.primaryVenueName}, ${settings.primaryVenueCity}.`}
+        eyebrow={t('venue.eyebrow')}
+        title={t('venue.title')}
+        subtitle={t('venue.subtitle')}
       />
 
       <section className="section-padding bg-ivory bg-mandala-pattern">
@@ -36,7 +38,7 @@ export const VenuePage: React.FC = () => {
                   className="w-full h-52 object-cover rounded-2xl border border-gold-400/50 mb-6"
                 />
                 <span className="text-xs uppercase tracking-[0.25em] text-gold-700 font-semibold">
-                  Wedding Route &amp; Travel Corridor
+                  {t('venue.routeBadge')}
                 </span>
                 <h2 className="font-serif text-3xl sm:text-4xl font-bold text-maroon-900 mt-1">
                   {settings.primaryVenueName}
@@ -53,7 +55,7 @@ export const VenuePage: React.FC = () => {
                   rel="noreferrer"
                   className="btn-royal w-full"
                 >
-                  <Navigation className="w-4 h-4" /> Open Region Map on Google Maps
+                  <Navigation className="w-4 h-4" /> {t('venue.openMap')}
                 </a>
               </div>
             </div>
@@ -73,10 +75,10 @@ export const VenuePage: React.FC = () => {
           <div>
             <div className="text-center mb-8">
               <p className="font-display text-xs uppercase tracking-[0.28em] text-maroon-700">
-                Where to Stay
+                {t('venue.stayEyebrow')}
               </p>
               <h2 className="font-serif text-3xl sm:text-4xl font-bold text-maroon-900 mt-1">
-                Nearby Accommodations
+                {t('venue.stayTitle')}
               </h2>
               <FloralDivider />
             </div>
@@ -99,38 +101,37 @@ export const VenuePage: React.FC = () => {
             </div>
           </div>
 
-          {/* Parking, Transport & Travel Instructions */}
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="royal-card p-7 space-y-6">
-              <div>
-                <h3 className="font-serif text-2xl font-bold text-maroon-900 flex items-center gap-2">
-                  <Car className="w-5 h-5 text-gold-700" /> Valet &amp; Parking Information
-                </h3>
-                <p className="text-sm text-maroon-900/80 mt-2 leading-relaxed">
-                  {venueDetails.parkingInfo}
-                </p>
+          {/* Travel Guidelines, Parking & Transportation */}
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="royal-card p-6 space-y-3">
+              <div className="flex items-center gap-2 text-maroon-900">
+                <Car className="w-5 h-5 text-gold-700" />
+                <h3 className="font-serif text-xl font-bold">{t('venue.parkingTitle')}</h3>
               </div>
-              <div className="pt-4 border-t border-gold-400/30">
-                <h3 className="font-serif text-2xl font-bold text-maroon-900 flex items-center gap-2">
-                  <Bus className="w-5 h-5 text-gold-700" /> Boat Transfers &amp; Shuttles
-                </h3>
-                <p className="text-sm text-maroon-900/80 mt-2 leading-relaxed">
-                  {venueDetails.transportationInfo}
-                </p>
-              </div>
+              <p className="text-sm text-maroon-900/80 leading-relaxed">
+                {venueDetails.parkingInfo}
+              </p>
             </div>
 
-            <div className="royal-card p-7">
-              <h3 className="font-serif text-2xl font-bold text-maroon-900 flex items-center gap-2 mb-4">
-                <Info className="w-5 h-5 text-gold-700" /> Important Travel Instructions
-              </h3>
-              <ul className="space-y-3">
-                {venueDetails.travelInstructions.map((tip, i) => (
-                  <li key={i} className="flex items-start gap-3 text-sm text-maroon-900/85">
-                    <span className="w-6 h-6 rounded-full bg-maroon-800 text-gold-200 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">
-                      {i + 1}
-                    </span>
-                    <span className="leading-relaxed">{tip}</span>
+            <div className="royal-card p-6 space-y-3">
+              <div className="flex items-center gap-2 text-maroon-900">
+                <Bus className="w-5 h-5 text-gold-700" />
+                <h3 className="font-serif text-xl font-bold">{t('venue.transportTitle')}</h3>
+              </div>
+              <p className="text-sm text-maroon-900/80 leading-relaxed">
+                {venueDetails.transportationInfo}
+              </p>
+            </div>
+
+            <div className="royal-card p-6 space-y-3">
+              <div className="flex items-center gap-2 text-maroon-900">
+                <Info className="w-5 h-5 text-gold-700" />
+                <h3 className="font-serif text-xl font-bold">{t('venue.travelTipsTitle')}</h3>
+              </div>
+              <ul className="text-xs text-maroon-900/80 space-y-2 list-disc list-inside">
+                {venueDetails.travelInstructions.map((tip, idx) => (
+                  <li key={idx} className="leading-relaxed">
+                    {tip}
                   </li>
                 ))}
               </ul>
@@ -141,4 +142,3 @@ export const VenuePage: React.FC = () => {
     </div>
   );
 };
-

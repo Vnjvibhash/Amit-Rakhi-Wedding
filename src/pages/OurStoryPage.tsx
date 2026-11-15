@@ -3,17 +3,19 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Heart, MapPin, Sparkles } from 'lucide-react';
 import { useWedding } from '../context/WeddingContext';
+import { useLanguage } from '../context/LanguageContext';
 import { PageHeader } from '../components/common/PageHeader';
 import { FloralDivider, JharokhaFrame } from '../components/common/MandalaArtwork';
 
 export const OurStoryPage: React.FC = () => {
   const { couple, settings } = useWedding();
+  const { t } = useLanguage();
 
   return (
     <div>
       <PageHeader
-        eyebrow="The Couple & Their Journey"
-        title="Our Story"
+        eyebrow={t('story.eyebrow')}
+        title={t('story.title')}
         subtitle={couple.storySummary}
       />
 
@@ -35,7 +37,7 @@ export const OurStoryPage: React.FC = () => {
                 />
               </JharokhaFrame>
               <span className="text-xs uppercase tracking-[0.25em] text-gold-700 font-semibold">
-                Groom • “{couple.groom.nickname}”
+                {t('story.groomBioTitle', { nickname: couple.groom.nickname })}
               </span>
               <h2 className="font-serif text-3xl sm:text-4xl font-bold text-maroon-900 mt-1">
                 {couple.groom.fullName}
@@ -69,7 +71,7 @@ export const OurStoryPage: React.FC = () => {
                 />
               </JharokhaFrame>
               <span className="text-xs uppercase tracking-[0.25em] text-gold-700 font-semibold">
-                Bride • “{couple.bride.nickname}”
+                {t('story.brideBioTitle', { nickname: couple.bride.nickname })}
               </span>
               <h2 className="font-serif text-3xl sm:text-4xl font-bold text-maroon-900 mt-1">
                 {couple.bride.fullName}
@@ -95,62 +97,69 @@ export const OurStoryPage: React.FC = () => {
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
             <p className="font-display text-xs uppercase tracking-[0.28em] text-maroon-700">
-              Milestones of Togetherness
+              {t('story.milestonesEyebrow')}
             </p>
             <h2 className="font-serif text-4xl font-bold text-maroon-900 mt-2">
-              How Forever Unfolded
+              {t('story.milestonesTitle')}
             </h2>
             <FloralDivider />
           </div>
 
-          <div className="space-y-8 relative before:hidden md:before:block before:absolute before:left-1/2 before:top-0 before:bottom-0 before:w-px before:bg-gold-400/60">
-            {couple.milestones.map((item, idx) => {
-              const isLeft = idx % 2 === 0;
-              return (
-                <motion.div
-                  key={item.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  className={`relative md:flex items-center gap-8 ${
-                    isLeft ? 'md:flex-row' : 'md:flex-row-reverse'
-                  }`}
-                >
-                  <div className="md:w-1/2">
-                    <div className="royal-card overflow-hidden">
-                      {item.imageUrl && (
-                        <img
-                          src={item.imageUrl}
-                          alt={item.title}
-                          className="w-full h-52 object-cover"
-                          loading="lazy"
-                        />
-                      )}
-                      <div className="p-6">
-                        <span className="inline-flex items-center gap-1.5 text-xs uppercase tracking-wider font-semibold text-gold-700">
-                          <Sparkles className="w-3.5 h-3.5" /> {item.year} • {item.location}
-                        </span>
-                        <h3 className="font-serif text-2xl font-bold text-maroon-900 mt-1">
-                          {item.title}
-                        </h3>
-                        <p className="text-sm text-maroon-900/80 mt-2 leading-relaxed">
-                          {item.description}
-                        </p>
-                      </div>
+          <div className="relative border-l-2 border-gold-400/50 ml-4 md:ml-32 space-y-12">
+            {couple.milestones.map((m, idx) => (
+              <motion.div
+                key={m.id}
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="relative pl-7 sm:pl-9"
+              >
+                {/* Timeline node icon */}
+                <span className="absolute -left-3.5 top-1.5 w-7 h-7 rounded-full bg-maroon-800 border-2 border-gold-400 flex items-center justify-center text-gold-300">
+                  <Sparkles className="w-3.5 h-3.5" />
+                </span>
+
+                <div className="royal-card p-6 sm:p-7 grid md:grid-cols-12 gap-6 items-center">
+                  {m.imageUrl && (
+                    <div className="md:col-span-4 h-44 rounded-xl overflow-hidden">
+                      <img
+                        src={m.imageUrl}
+                        alt={m.title}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
                     </div>
+                  )}
+                  <div className={m.imageUrl ? 'md:col-span-8' : 'md:col-span-12'}>
+                    <span className="text-xs uppercase tracking-wider font-semibold text-gold-700 bg-gold-100/70 px-2.5 py-1 rounded-full">
+                      {m.year}
+                    </span>
+                    <h3 className="font-serif text-2xl font-bold text-maroon-900 mt-2">
+                      {m.title}
+                    </h3>
+                    <p className="text-xs text-maroon-700 mt-1 flex items-center gap-1 font-medium">
+                      <MapPin className="w-3 h-3" /> {m.location}
+                    </p>
+                    <p className="text-sm text-maroon-900/80 mt-3 leading-relaxed">
+                      {m.description}
+                    </p>
                   </div>
-                  <div className="hidden md:flex items-center justify-center w-10 h-10 rounded-full bg-maroon-800 border-2 border-gold-400 text-gold-300 z-10 shrink-0 shadow-gold">
-                    <Heart className="w-4 h-4 fill-gold-400 text-gold-400" />
-                  </div>
-                  <div className="md:w-1/2" />
-                </motion.div>
-              );
-            })}
+                </div>
+              </motion.div>
+            ))}
           </div>
 
-          <div className="text-center mt-14">
-            <Link to="/events" className="btn-royal">
-              Join Us at {settings.primaryVenueCity} Celebrations
+          <div className="text-center mt-16 royal-card p-8 sm:p-10 max-w-2xl mx-auto">
+            <Heart className="w-8 h-8 text-maroon-700 mx-auto mb-2 fill-maroon-700/20" />
+            <h3 className="font-serif text-3xl font-bold text-maroon-900">
+              {t('story.rsvpCardTitle')}
+            </h3>
+            <p className="text-sm text-maroon-900/80 mt-2 mb-6">
+              {t('story.rsvpCardDesc')}
+            </p>
+            <Link to="/rsvp" className="btn-royal">
+              {t('story.rsvpBtn')}
             </Link>
           </div>
         </div>
@@ -158,4 +167,3 @@ export const OurStoryPage: React.FC = () => {
     </div>
   );
 };
-

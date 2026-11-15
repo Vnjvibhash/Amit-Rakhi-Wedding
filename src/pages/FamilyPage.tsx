@@ -2,11 +2,13 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Phone, Sparkles } from 'lucide-react';
 import { useWedding } from '../context/WeddingContext';
+import { useLanguage } from '../context/LanguageContext';
 import { PageHeader } from '../components/common/PageHeader';
 import { FloralDivider, JharokhaFrame } from '../components/common/MandalaArtwork';
 
 export const FamilyPage: React.FC = () => {
   const { family, settings, couple } = useWedding();
+  const { t } = useLanguage();
 
   const sorted = [...family].sort((a, b) => a.order - b.order);
   const groomSide = sorted.filter((m) => m.side === 'groom');
@@ -16,7 +18,7 @@ export const FamilyPage: React.FC = () => {
   return (
     <div>
       <PageHeader
-        eyebrow="Roots, Love & Tradition"
+        eyebrow={t('family.eyebrow')}
         title={settings.familyBlessingHeader}
         subtitle={settings.invitationMessage}
       />
@@ -27,10 +29,10 @@ export const FamilyPage: React.FC = () => {
           <div>
             <div className="text-center mb-10">
               <span className="text-xs uppercase tracking-[0.28em] text-gold-700 font-semibold">
-                Ladke Wale • {couple.groom.hometown}
+                {t('family.groomSideBadge')} • {couple.groom.hometown}
               </span>
               <h2 className="font-serif text-3xl sm:text-4xl font-bold text-maroon-900 mt-1">
-                Groom’s Family — Chharapatti, Madhubani
+                {t('family.groomSideTitle')}
               </h2>
               <FloralDivider />
             </div>
@@ -64,7 +66,7 @@ export const FamilyPage: React.FC = () => {
                         href={`tel:${member.phone}`}
                         className="inline-flex items-center gap-1.5 text-xs font-semibold text-maroon-800 mt-3 hover:text-gold-700"
                       >
-                        <Phone className="w-3.5 h-3.5" /> {member.phone}
+                        <Phone className="w-3.5 h-3.5" /> {t('family.call')} {member.phone}
                       </a>
                     )}
                   </div>
@@ -77,10 +79,10 @@ export const FamilyPage: React.FC = () => {
           <div>
             <div className="text-center mb-10">
               <span className="text-xs uppercase tracking-[0.28em] text-gold-700 font-semibold">
-                Ladki Wale • {couple.bride.hometown}
+                {t('family.brideSideBadge')} • {couple.bride.hometown}
               </span>
               <h2 className="font-serif text-3xl sm:text-4xl font-bold text-maroon-900 mt-1">
-                Bride’s Family — Paroriyahi, Madhubani
+                {t('family.brideSideTitle')}
               </h2>
               <FloralDivider />
             </div>
@@ -114,7 +116,7 @@ export const FamilyPage: React.FC = () => {
                         href={`tel:${member.phone}`}
                         className="inline-flex items-center gap-1.5 text-xs font-semibold text-maroon-800 mt-3 hover:text-gold-700"
                       >
-                        <Phone className="w-3.5 h-3.5" /> {member.phone}
+                        <Phone className="w-3.5 h-3.5" /> {t('family.call')} {member.phone}
                       </a>
                     )}
                   </div>
@@ -123,48 +125,54 @@ export const FamilyPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Siblings & Hospitality Coordinators */}
+          {/* Combined / Youngsters / Relatives */}
           {combinedSide.length > 0 && (
             <div>
               <div className="text-center mb-10">
                 <span className="text-xs uppercase tracking-[0.28em] text-gold-700 font-semibold">
-                  Celebration Hosts
+                  <Sparkles className="w-3 h-3 inline mr-1" />
+                  {t('family.combinedTitle')}
                 </span>
                 <h2 className="font-serif text-3xl sm:text-4xl font-bold text-maroon-900 mt-1">
-                  Siblings &amp; Family Coordinators
+                  {settings.coupleDisplayName}
                 </h2>
                 <FloralDivider />
               </div>
-              <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              <div className="grid md:grid-cols-2 gap-8">
                 {combinedSide.map((member) => (
-                  <div
+                  <motion.div
                     key={member.id}
+                    initial={{ opacity: 0, y: 18 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
                     className="royal-card p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-6"
                   >
-                    <img
-                      src={member.photoUrl}
-                      alt={member.name}
-                      className="w-32 h-32 rounded-2xl object-cover border-2 border-gold-400/70 shrink-0"
-                      loading="lazy"
-                    />
+                    <JharokhaFrame className="w-36 h-44 shrink-0">
+                      <img
+                        src={member.photoUrl}
+                        alt={member.name}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </JharokhaFrame>
                     <div className="text-center sm:text-left">
-                      <span className="inline-flex items-center gap-1 text-[11px] uppercase tracking-wider font-semibold text-gold-700">
-                        <Sparkles className="w-3 h-3" /> {member.relation}
+                      <span className="text-[11px] uppercase tracking-wider font-semibold text-gold-700">
+                        {member.relation}
                       </span>
                       <h3 className="font-serif text-2xl font-bold text-maroon-900 mt-1">
                         {member.name}
                       </h3>
-                      <p className="text-sm text-maroon-900/80 mt-2">{member.bio}</p>
+                      <p className="text-sm text-maroon-900/80 mt-2 leading-relaxed">{member.bio}</p>
                       {member.phone && (
                         <a
                           href={`tel:${member.phone}`}
-                          className="inline-flex items-center gap-1.5 text-xs font-semibold text-maroon-800 mt-3"
+                          className="inline-flex items-center gap-1.5 text-xs font-semibold text-maroon-800 mt-3 hover:text-gold-700"
                         >
-                          <Phone className="w-3.5 h-3.5" /> {member.phone}
+                          <Phone className="w-3.5 h-3.5" /> {t('family.call')} {member.phone}
                         </a>
                       )}
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
@@ -174,4 +182,3 @@ export const FamilyPage: React.FC = () => {
     </div>
   );
 };
-

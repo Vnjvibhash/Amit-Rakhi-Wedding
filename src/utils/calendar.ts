@@ -25,19 +25,36 @@ function normalizeTime(timeStr: string): string {
   return '09:00';
 }
 
-export function formatTimeDisplay(timeStr: string): string {
+export function formatTimeDisplay(timeStr: string, locale: 'hi' | 'en' = 'hi'): string {
   const match = timeStr.match(/^(\d{1,2}):(\d{2})$/);
   if (!match) return timeStr;
   let hour = parseInt(match[1], 10);
   const mins = match[2];
+  if (locale === 'hi') {
+    let period = 'दोपहर';
+    if (hour < 12 && hour >= 4) period = 'प्रातः';
+    else if (hour >= 12 && hour < 16) period = 'दोपहर';
+    else if (hour >= 16 && hour < 20) period = 'सायं';
+    else period = 'रात्रि';
+    const displayHour = hour % 12 || 12;
+    return `${period} ${displayHour}:${mins} बजे`;
+  }
   const period = hour >= 12 ? 'PM' : 'AM';
   hour = hour % 12 || 12;
   return `${hour}:${mins} ${period}`;
 }
 
-export function formatDateLong(dateStr: string): string {
+export function formatDateLong(dateStr: string, locale: 'hi' | 'en' = 'hi'): string {
   const d = new Date(`${dateStr}T12:00:00`);
   if (isNaN(d.getTime())) return dateStr;
+  if (locale === 'hi') {
+    const weekdays = ['रविवार', 'सोमवार', 'मंगलवार', 'बुधवार', 'गुरुवार', 'शुक्रवार', 'शनिवार'];
+    const months = [
+      'जनवरी', 'फरवरी', 'मार्च', 'अप्रैल', 'मई', 'जून',
+      'जुलाई', 'अगस्त', 'सितंबर', 'अक्टूबर', 'नवंबर', 'दिसंबर'
+    ];
+    return `${weekdays[d.getDay()]}, ${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+  }
   return d.toLocaleDateString('en-IN', {
     weekday: 'long',
     day: 'numeric',
