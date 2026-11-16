@@ -38,7 +38,7 @@ export const DEFAULT_SETTINGS: WeddingSettings = {
   familyBlessingHeader: 'With the Blessings of Our Families',
   weddingDateISO: '2026-11-25T20:00:00+05:30',
   weddingDateFormatted: '25th November 2026',
-  primaryVenueName: 'Phulparas to Babubarhi',
+  primaryVenueName: 'Chharapatti to Paroriyahi',
   primaryVenueCity: 'Madhubani, Bihar',
   primaryVenueAddress:
     'Phulparas (Gram Chharapatti, Post Bathnaha) — Babubarhi (Gram Paroriyahi, Post Gajhara), Madhubani, Bihar',
